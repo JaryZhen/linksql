@@ -29,8 +29,8 @@ import org.apache.flink.api.java.typeutils.RowTypeInfo;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.*;
-import org.apache.flink.table.api.java.StreamTableEnvironment;
-import org.apache.flink.table.api.java.internal.StreamTableEnvironmentImpl;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
+import org.apache.flink.table.api.bridge.java.internal.StreamTableEnvironmentImpl;
 import org.apache.flink.table.sinks.TableSink;
 
 import com.jz.linksql.core.classloader.ClassLoaderManager;
@@ -42,7 +42,6 @@ import com.jz.linksql.core.environment.StreamEnvConfigManager;
 import com.jz.linksql.core.function.FunctionManager;
 import com.jz.linksql.core.option.OptionParser;
 import com.jz.linksql.core.option.Options;
-import com.jz.linksql.core.side.SideSqlExec;
 import com.jz.linksql.core.side.AbstractSideTableInfo;
 import com.jz.linksql.core.sink.StreamSinkFactory;
 import com.jz.linksql.core.source.StreamSourceFactory;
@@ -80,9 +79,10 @@ import java.util.TimeZone;
 import java.util.ArrayList;
 
 /**
- *  任务执行时的流程方法
+ * 任务执行时的流程方法
  * Date: 2020/2/17
  * Company: www.dtstack.com
+ *
  * @author maqi
  */
 public class ExecuteProcessHelper {
@@ -131,7 +131,8 @@ public class ExecuteProcessHelper {
     }
 
     /**
-     *   非local模式或者shipfile部署模式，remoteSqlPluginPath必填
+     * 非local模式或者shipfile部署模式，remoteSqlPluginPath必填
+     *
      * @param remoteSqlPluginPath
      * @param deployMode
      * @param pluginLoadMode
@@ -165,7 +166,7 @@ public class ExecuteProcessHelper {
         // cache classPathSets
         ExecuteProcessHelper.registerPluginUrlToCachedFile(env, classPathSets);
 
-        ExecuteProcessHelper.sqlTranslation(paramsInfo.getLocalSqlPluginPath(), paramsInfo.getPluginLoadMode(),tableEnv, sqlTree, sideTableMap, registerTableCache);
+        // ExecuteProcessHelper.sqlTranslation(paramsInfo.getLocalSqlPluginPath(), paramsInfo.getPluginLoadMode(),tableEnv, sqlTree, sideTableMap, registerTableCache);
 
         if (env instanceof MyLocalStreamEnvironment) {
             ((MyLocalStreamEnvironment) env).setClasspaths(ClassLoaderManager.getClassPath());
@@ -188,7 +189,7 @@ public class ExecuteProcessHelper {
         return jarUrlList;
     }
 
-    private static void sqlTranslation(String localSqlPluginPath,
+/*    private static void sqlTranslation(String localSqlPluginPath,
                                        String pluginLoadMode,
                                        StreamTableEnvironment tableEnv,
                                        SqlTree sqlTree,Map<String, AbstractSideTableInfo> sideTableMap,
@@ -241,7 +242,7 @@ public class ExecuteProcessHelper {
                 scope++;
             }
         }
-    }
+    }*/
 
     public static void registerUserDefinedFunction(SqlTree sqlTree, List<URL> jarUrlList, TableEnvironment tableEnv)
             throws IllegalAccessException, InvocationTargetException {
@@ -259,13 +260,14 @@ public class ExecuteProcessHelper {
     }
 
     /**
-     *    向Flink注册源表和结果表，返回执行时插件包的全路径
+     * 向Flink注册源表和结果表，返回执行时插件包的全路径
+     *
      * @param sqlTree
      * @param env
      * @param tableEnv
      * @param localSqlPluginPath
      * @param remoteSqlPluginPath
-     * @param pluginLoadMode   插件加载模式 classpath or shipfile
+     * @param pluginLoadMode      插件加载模式 classpath or shipfile
      * @param sideTableMap
      * @param registerTableCache
      * @return
@@ -312,8 +314,10 @@ public class ExecuteProcessHelper {
 
                 TableSink tableSink = StreamSinkFactory.getTableSink((AbstractTargetTableInfo) tableInfo, localSqlPluginPath, pluginLoadMode);
                 TypeInformation[] flinkTypes = FunctionManager.transformTypes(tableInfo.getFieldClasses());
-                tableEnv.registerTableSink(tableInfo.getName(), tableInfo.getFields(), flinkTypes, tableSink);
+                //tableEnv.registerTableSink(tableInfo.getName(), tableInfo.getFields(), flinkTypes, tableSink);
+                final TableDescriptor descriptor = TableDescriptor.forConnector("kafka").build();
 
+                tableEnv.createTable(tableInfo.getName(), descriptor);
                 URL sinkTablePathUrl = PluginUtil.buildSourceAndSinkPathByLoadMode(tableInfo.getType(), AbstractTargetTableInfo.TARGET_SUFFIX, localSqlPluginPath, remoteSqlPluginPath, pluginLoadMode);
                 pluginClassPathSets.add(sinkTablePathUrl);
             } else if (tableInfo instanceof AbstractSideTableInfo) {
@@ -333,7 +337,8 @@ public class ExecuteProcessHelper {
     }
 
     /**
-     *   perjob模式将job依赖的插件包路径存储到cacheFile，在外围将插件包路径传递给jobgraph
+     * perjob模式将job依赖的插件包路径存储到cacheFile，在外围将插件包路径传递给jobgraph
+     *
      * @param env
      * @param classPathSet
      */
@@ -376,7 +381,7 @@ public class ExecuteProcessHelper {
 
     private static void timeZoneCheck(String timeZone) {
         ArrayList<String> zones = Lists.newArrayList(TimeZone.getAvailableIDs());
-        if (!zones.contains(timeZone)){
+        if (!zones.contains(timeZone)) {
             throw new IllegalArgumentException(String.format(" timezone of %s is Incorrect!", timeZone));
         }
     }

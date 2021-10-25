@@ -69,7 +69,7 @@ public class FieldInfo implements Serializable {
         this.typeInformation = typeInformation;
     }
 
-    public TypeInformation getLogicalType() {
+    public LogicalType getLogicalType() {
         return logicalType;
     }
 

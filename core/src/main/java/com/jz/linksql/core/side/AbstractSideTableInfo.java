@@ -17,14 +17,12 @@
  */
 
 
-
 package com.jz.linksql.core.side;
 
 import com.jz.linksql.core.table.AbstractTableInfo;
 import com.google.common.collect.Lists;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.api.java.typeutils.RowTypeInfo;
-import org.apache.flink.table.runtime.typeutils.BaseRowTypeInfo;
 import org.apache.flink.table.types.DataType;
 import org.apache.flink.table.types.logical.DecimalType;
 import org.apache.flink.table.types.logical.LogicalType;
@@ -40,6 +38,7 @@ import java.util.Optional;
  * Reason:
  * Date: 2018/7/25
  * Company: www.dtstack.com
+ *
  * @author xuchao
  */
 
@@ -73,55 +72,34 @@ public abstract class AbstractSideTableInfo extends AbstractTableInfo implements
 
     private long cacheTimeout = 60 * 1000L;
 
-    private int  asyncCapacity=100;
+    private int asyncCapacity = 100;
 
-    private int  asyncTimeout=10000;
+    private int asyncTimeout = 10000;
 
     /**
-     *  async operator req outside conn pool size, egg rdb conn pool size
+     * async operator req outside conn pool size, egg rdb conn pool size
      */
     private int asyncPoolSize = 0;
 
     private boolean partitionedJoin = false;
 
-    private String cacheMode="ordered";
+    private String cacheMode = "ordered";
 
     private Long asyncFailMaxNum;
 
     private Integer connectRetryMaxNum;
 
-    private List<PredicateInfo>  predicateInfoes = Lists.newArrayList();
+    private List<PredicateInfo> predicateInfoes = Lists.newArrayList();
 
-    public RowTypeInfo getRowTypeInfo(){
+    public RowTypeInfo getRowTypeInfo() {
         Class[] fieldClass = getFieldClasses();
         TypeInformation<?>[] types = new TypeInformation[fieldClass.length];
         String[] fieldNames = getFields();
-        for(int i=0; i<fieldClass.length; i++){
+        for (int i = 0; i < fieldClass.length; i++) {
             types[i] = TypeInformation.of(fieldClass[i]);
         }
 
         return new RowTypeInfo(types, fieldNames);
-    }
-
-    public BaseRowTypeInfo getBaseRowTypeInfo(){
-        String[] fieldNames = getFields();
-        Class[] fieldClass = getFieldClasses();
-        LogicalType[] logicalTypes = new LogicalType[fieldClass.length];
-        for (int i = 0; i < fieldClass.length; i++) {
-            if(fieldClass[i].getName().equals(BigDecimal.class.getName())){
-                logicalTypes[i] = new DecimalType(DecimalType.MAX_PRECISION, 18);
-                continue;
-            }
-
-            Optional<DataType> optionalDataType = ClassDataTypeConverter.extractDataType(fieldClass[i]);
-            if(!optionalDataType.isPresent()){
-                throw new RuntimeException(String.format("not support table % field %s type %s", getName(), fieldNames[i], fieldClass[i]));
-            }
-
-            logicalTypes[i] = optionalDataType.get().getLogicalType();
-        }
-
-        return new BaseRowTypeInfo(logicalTypes, fieldNames);
     }
 
     public String getCacheType() {
@@ -213,6 +191,7 @@ public abstract class AbstractSideTableInfo extends AbstractTableInfo implements
     public void setConnectRetryMaxNum(Integer connectRetryMaxNum) {
         this.connectRetryMaxNum = connectRetryMaxNum;
     }
+
     @Override
     public String toString() {
         return "Cache Info{" +

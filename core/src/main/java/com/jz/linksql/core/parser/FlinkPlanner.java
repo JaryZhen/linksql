@@ -18,19 +18,23 @@
 
 package com.jz.linksql.core.parser;
 
-import org.apache.flink.table.api.EnvironmentSettings;
 import org.apache.flink.table.api.SqlDialect;
 import org.apache.flink.table.api.TableConfig;
 import org.apache.flink.table.catalog.Catalog;
 import org.apache.flink.table.catalog.CatalogManager;
 import org.apache.flink.table.catalog.FunctionCatalog;
 import org.apache.flink.table.catalog.GenericInMemoryCatalog;
+import org.apache.flink.table.delegation.Parser;
 import org.apache.flink.table.module.ModuleManager;
-import org.apache.flink.table.planner.calcite.CalciteParser;
+import org.apache.flink.table.planner.calcite.FlinkPlannerImpl;
+import org.apache.flink.table.planner.delegation.ParserImpl;
+import org.apache.flink.table.planner.parse.CalciteParser;
 import org.apache.flink.table.planner.catalog.CatalogManagerCalciteSchema;
 import org.apache.flink.table.planner.delegation.PlannerContext;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.function.Supplier;
 
 import static org.apache.calcite.jdbc.CalciteSchemaBuilder.asRootSchema;
 
@@ -38,37 +42,55 @@ import static org.apache.calcite.jdbc.CalciteSchemaBuilder.asRootSchema;
  * 废弃。之后删除
  * Date: 2020/3/31
  * Company: www.dtstack.com
+ *
  * @author maqi
  */
 public class FlinkPlanner {
 
     private final TableConfig tableConfig = new TableConfig();
-
-    private final Catalog catalog = new GenericInMemoryCatalog(EnvironmentSettings.DEFAULT_BUILTIN_CATALOG,
-            EnvironmentSettings.DEFAULT_BUILTIN_DATABASE);
+    private final Catalog catalog = new GenericInMemoryCatalog("MockCatalog", "default");
     private final CatalogManager catalogManager =
-            new CatalogManager("builtin", catalog);
+            CatalogManagerMocks.preparedCatalogManager().defaultCatalog("builtin", catalog).build();
     private final ModuleManager moduleManager = new ModuleManager();
-    private final FunctionCatalog functionCatalog = new FunctionCatalog(
-            tableConfig,
-            catalogManager,
-            moduleManager);
+    private final FunctionCatalog functionCatalog =
+            new FunctionCatalog(tableConfig, catalogManager, moduleManager);
     private final PlannerContext plannerContext =
-            new PlannerContext(tableConfig,
+            new PlannerContext(
+                    false,
+                    tableConfig,
                     functionCatalog,
                     catalogManager,
-                    asRootSchema(new CatalogManagerCalciteSchema(catalogManager, false)),
-                    new ArrayList<>());
+                    asRootSchema(new CatalogManagerCalciteSchema(catalogManager, true)),
+                    Collections.emptyList());
 
+    private final Supplier<FlinkPlannerImpl> plannerSupplier =
+            () ->
+                    getPlannerContext()
+                            .createFlinkPlanner(
+                                    catalogManager.getCurrentCatalog(),
+                                    catalogManager.getCurrentDatabase());
+    private final Parser parser =
+            new ParserImpl(
+                    catalogManager,
+                    plannerSupplier,
+                    () -> plannerSupplier.get().parser(),
+                    getPlannerContext().getSqlExprToRexConverterFactory());
 
     public FlinkPlanner() {
+        catalogManager.initSchemaResolver(
+                true,
+                ExpressionResolverMocks.basicResolver(catalogManager, functionCatalog, parser));
     }
 
-    public CalciteParser getParser(){
+    private PlannerContext getPlannerContext() {
+        return plannerContext;
+    }
+
+    public CalciteParser getParser() {
         return getParserBySqlDialect(SqlDialect.DEFAULT);
     }
 
-    public CalciteParser getParserBySqlDialect(SqlDialect sqlDialect) {
+    private CalciteParser getParserBySqlDialect(SqlDialect sqlDialect) {
         tableConfig.setSqlDialect(sqlDialect);
         return plannerContext.createCalciteParser();
     }

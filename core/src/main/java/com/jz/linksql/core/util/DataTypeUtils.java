@@ -23,7 +23,7 @@ import com.google.common.collect.Lists;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.java.typeutils.RowTypeInfo;
-import org.apache.flink.shaded.guava18.com.google.common.base.Splitter;
+import org.apache.flink.shaded.guava30.com.google.common.base.Splitter;
 import org.apache.flink.table.api.Types;
 
 import java.util.ArrayList;

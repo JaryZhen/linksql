@@ -24,7 +24,6 @@ import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Lists;
 import com.jz.linksql.core.side.AbstractSideTableInfo;
-import com.jz.linksql.core.side.FieldInfo;
 import com.jz.linksql.core.side.JoinInfo;
 import com.jz.linksql.core.side.PredicateInfo;
 import org.apache.calcite.sql.SqlAsOperator;
@@ -66,12 +65,7 @@ public class TableUtils {
     public static final char SPLIT = '_';
     public static final Pattern stringPattern = Pattern.compile("\".*?\"|\'.*?\'");
 
-    /**
-     * 获取select 的字段
-     *
-     * @param sqlSelect
-     */
-    public static List<FieldInfo> parserSelectField(SqlSelect sqlSelect, Map<String, Table> localTableCache) {
+/*    public static List<FieldInfo> parserSelectField(SqlSelect sqlSelect, Map<String, Table> localTableCache) {
         SqlNodeList sqlNodeList = sqlSelect.getSelectList();
         List<FieldInfo> fieldInfoList = Lists.newArrayList();
         String fromNode = sqlSelect.getFrom().toString();
@@ -81,16 +75,9 @@ public class TableUtils {
         }
 
         return fieldInfoList;
-    }
+    }*/
 
-    /**
-     * 解析select Node 提取FieldInfo
-     *
-     * @param fieldNode
-     * @param fromNode
-     * @param fieldInfoList
-     * @param localTableCache
-     */
+/*
     public static void extractSelectFieldToFieldInfo(SqlNode fieldNode, String fromNode, List<FieldInfo> fieldInfoList, Map<String, Table> localTableCache) {
         if (fieldNode.getKind() == IDENTIFIER) {
             SqlIdentifier identifier = (SqlIdentifier) fieldNode;
@@ -192,6 +179,8 @@ public class TableUtils {
             extractSelectFieldToFieldInfo(elseNode, fromNode, fieldInfoList, localTableCache);
         }
     }
+*/
+
 
     public static SqlBasicCall buildAsNodeByJoinInfo(JoinInfo joinInfo, SqlNode sqlNode0, String tableAlias) {
         SqlOperator operator = new SqlAsOperator();
