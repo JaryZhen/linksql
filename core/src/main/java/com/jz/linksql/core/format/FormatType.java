@@ -15,27 +15,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jz.linksql.core;
 
-import com.jz.linksql.core.exec.ExecuteProcessHelper;
-import com.jz.linksql.core.exec.ParamsInfo;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.jz.linksql.core.format;
 
 /**
- * Date: 2018/6/26
- * Company: www.dtstack.com
- * @author xuchao
+ * indicate source table input data format type
+ * company: www.dtstack.com
+ * author: toutian
+ * create: 2019/12/24
  */
-
-public class Main {
-    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
-
-    public static void main(String[] args) throws Exception {
-        ParamsInfo paramsInfo = ExecuteProcessHelper.parseParams(args);
-        StreamExecutionEnvironment env = ExecuteProcessHelper.getStreamExecution(paramsInfo);
-        env.execute(paramsInfo.getName());
-        LOG.info("program {} execution success", paramsInfo.getName());
-    }
+public enum FormatType {
+    //Indicates that the data is in nest json format(default)
+    DT_NEST,
+    //Indicates that the data is in json format
+    JSON,
+    //Indicates that the data is in avro format
+    AVRO,
+    //Indicates that the data is in csv format
+    CSV
 }

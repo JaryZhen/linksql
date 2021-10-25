@@ -15,27 +15,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jz.linksql.core;
 
-import com.jz.linksql.core.exec.ExecuteProcessHelper;
-import com.jz.linksql.core.exec.ParamsInfo;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-/**
- * Date: 2018/6/26
- * Company: www.dtstack.com
- * @author xuchao
- */
+package com.jz.linksql.core.util;
 
-public class Main {
-    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+import java.sql.DriverManager;
 
-    public static void main(String[] args) throws Exception {
-        ParamsInfo paramsInfo = ExecuteProcessHelper.parseParams(args);
-        StreamExecutionEnvironment env = ExecuteProcessHelper.getStreamExecution(paramsInfo);
-        env.execute(paramsInfo.getName());
-        LOG.info("program {} execution success", paramsInfo.getName());
+public class JDBCUtils {
+    private static final Object LOCK = new Object();
+
+    public static void forName(String clazz, ClassLoader classLoader)  {
+        synchronized (LOCK){
+            try {
+                Class.forName(clazz, true, classLoader);
+                DriverManager.setLoginTimeout(10);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+
+    public synchronized static void forName(String clazz) {
+        try {
+            Class<?> driverClass = Class.forName(clazz);
+            driverClass.newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

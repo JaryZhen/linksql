@@ -15,27 +15,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jz.linksql.core;
 
-import com.jz.linksql.core.exec.ExecuteProcessHelper;
-import com.jz.linksql.core.exec.ParamsInfo;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+
+
+package com.jz.linksql.core.watermarker;
+
+import com.jz.linksql.core.util.MathUtil;
+import org.apache.flink.streaming.api.windowing.time.Time;
+import org.apache.flink.types.Row;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Date: 2018/6/26
+ * Custom watermark --- for eventtime
+ * Date: 2017/12/28
  * Company: www.dtstack.com
  * @author xuchao
  */
 
-public class Main {
-    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+public class CustomerWaterMarkerForLong extends AbstractCustomerWaterMarker<Row> {
 
-    public static void main(String[] args) throws Exception {
-        ParamsInfo paramsInfo = ExecuteProcessHelper.parseParams(args);
-        StreamExecutionEnvironment env = ExecuteProcessHelper.getStreamExecution(paramsInfo);
-        env.execute(paramsInfo.getName());
-        LOG.info("program {} execution success", paramsInfo.getName());
+    private static final Logger logger = LoggerFactory.getLogger(CustomerWaterMarkerForLong.class);
+
+    public CustomerWaterMarkerForLong(Time maxOutOfOrderness, int pos) {
+        super(maxOutOfOrderness);
+        this.pos = pos;
     }
+
+    @Override
+    public long extractTimestamp(Row row) {
+
+        try{
+            Long extractTime = MathUtil.getLongVal(row.getField(pos));
+            return getExtractTimestamp(extractTime);
+        }catch (Exception e){
+            logger.error("", e);
+        }
+        return lastTime;
+    }
+
 }

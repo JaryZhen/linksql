@@ -15,27 +15,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jz.linksql.core;
 
-import com.jz.linksql.core.exec.ExecuteProcessHelper;
-import com.jz.linksql.core.exec.ParamsInfo;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.jz.linksql.core.side;
+
+import org.apache.flink.api.common.typeinfo.TypeInformation;
+import org.apache.flink.api.java.functions.KeySelector;
+import org.apache.flink.api.java.typeutils.ResultTypeQueryable;
+import org.apache.flink.types.Row;
 
 /**
- * Date: 2018/6/26
+ * Date: 2020/3/25
  * Company: www.dtstack.com
- * @author xuchao
+ * @author maqi
  */
+public class TupleKeySelector implements ResultTypeQueryable<Row>, KeySelector<Row, Row> {
 
-public class Main {
-    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+    private int[] keyFields;
+    private TypeInformation<Row> returnType;
 
-    public static void main(String[] args) throws Exception {
-        ParamsInfo paramsInfo = ExecuteProcessHelper.parseParams(args);
-        StreamExecutionEnvironment env = ExecuteProcessHelper.getStreamExecution(paramsInfo);
-        env.execute(paramsInfo.getName());
-        LOG.info("program {} execution success", paramsInfo.getName());
+    public TupleKeySelector(int[] keyFields, TypeInformation<Row> returnType) {
+        this.keyFields = keyFields;
+        this.returnType = returnType;
+    }
+
+    @Override
+    public Row getKey(Row value) throws Exception {
+        return Row.project(value, keyFields);
+    }
+
+    @Override
+    public TypeInformation<Row> getProducedType() {
+        return returnType;
     }
 }

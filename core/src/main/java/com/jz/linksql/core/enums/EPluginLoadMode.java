@@ -15,27 +15,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jz.linksql.core;
 
-import com.jz.linksql.core.exec.ExecuteProcessHelper;
-import com.jz.linksql.core.exec.ParamsInfo;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.jz.linksql.core.enums;
 
 /**
- * Date: 2018/6/26
- * Company: www.dtstack.com
- * @author xuchao
+ *
+ * CLASSPATH： plugin jar depends on each machine node.
+ * SHIPFILE:  plugin jar only depends on the client submitted by the task.
+ *
  */
+public enum EPluginLoadMode {
 
-public class Main {
-    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+    /**
+     * 0:classpath
+     */
+    CLASSPATH(0),
+    /**
+     * 1:shipfile
+     */
+    SHIPFILE(1),
 
-    public static void main(String[] args) throws Exception {
-        ParamsInfo paramsInfo = ExecuteProcessHelper.parseParams(args);
-        StreamExecutionEnvironment env = ExecuteProcessHelper.getStreamExecution(paramsInfo);
-        env.execute(paramsInfo.getName());
-        LOG.info("program {} execution success", paramsInfo.getName());
+    /**
+     * 2:localTest
+     */
+    LOCALTEST(3);
+
+    private int type;
+
+    EPluginLoadMode(int type){
+        this.type = type;
+    }
+
+    public int getType(){
+        return this.type;
     }
 }

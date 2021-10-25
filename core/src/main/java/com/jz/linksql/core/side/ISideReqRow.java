@@ -15,27 +15,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jz.linksql.core;
 
-import com.jz.linksql.core.exec.ExecuteProcessHelper;
-import com.jz.linksql.core.exec.ParamsInfo;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.jz.linksql.core.side;
+
+import org.apache.flink.types.Row;
 
 /**
- * Date: 2018/6/26
+ *
+ * Date: 2018/12/4
  * Company: www.dtstack.com
  * @author xuchao
  */
+public interface ISideReqRow {
 
-public class Main {
-    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+    Row fillData(Row input, Object sideInput);
 
-    public static void main(String[] args) throws Exception {
-        ParamsInfo paramsInfo = ExecuteProcessHelper.parseParams(args);
-        StreamExecutionEnvironment env = ExecuteProcessHelper.getStreamExecution(paramsInfo);
-        env.execute(paramsInfo.getName());
-        LOG.info("program {} execution success", paramsInfo.getName());
-    }
 }

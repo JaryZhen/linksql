@@ -15,27 +15,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jz.linksql.core;
 
-import com.jz.linksql.core.exec.ExecuteProcessHelper;
-import com.jz.linksql.core.exec.ParamsInfo;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-/**
- * Date: 2018/6/26
- * Company: www.dtstack.com
- * @author xuchao
- */
+package com.jz.linksql.core.util;
 
-public class Main {
-    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+import java.util.Properties;
 
-    public static void main(String[] args) throws Exception {
-        ParamsInfo paramsInfo = ExecuteProcessHelper.parseParams(args);
-        StreamExecutionEnvironment env = ExecuteProcessHelper.getStreamExecution(paramsInfo);
-        env.execute(paramsInfo.getName());
-        LOG.info("program {} execution success", paramsInfo.getName());
+public class PropertiesUtils {
+    public static Properties propertiesTrim(Properties confProperties) {
+        Properties properties = new Properties();
+        confProperties.forEach(
+                (k, v) -> {
+                    properties.put(k.toString().trim(), v.toString().trim());
+                }
+        );
+        return properties;
     }
 }

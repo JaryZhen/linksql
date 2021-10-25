@@ -15,27 +15,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jz.linksql.core;
 
-import com.jz.linksql.core.exec.ExecuteProcessHelper;
-import com.jz.linksql.core.exec.ParamsInfo;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
+package com.jz.linksql.core.side;
+
+import com.jz.linksql.core.enums.ECacheContentType;
+import com.jz.linksql.core.side.cache.CacheObj;
 
 /**
- * Date: 2018/6/26
+ * Only the data marked to dimension table miss
+ * Date: 2018/8/28
  * Company: www.dtstack.com
  * @author xuchao
  */
 
-public class Main {
-    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+public class CacheMissVal {
 
-    public static void main(String[] args) throws Exception {
-        ParamsInfo paramsInfo = ExecuteProcessHelper.parseParams(args);
-        StreamExecutionEnvironment env = ExecuteProcessHelper.getStreamExecution(paramsInfo);
-        env.execute(paramsInfo.getName());
-        LOG.info("program {} execution success", paramsInfo.getName());
+    private static CacheObj missObj = CacheObj.buildCacheObj(ECacheContentType.MissVal, null);
+
+    public static CacheObj getMissKeyObj(){
+        return missObj;
     }
 }

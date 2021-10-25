@@ -15,27 +15,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jz.linksql.core;
 
-import com.jz.linksql.core.exec.ExecuteProcessHelper;
-import com.jz.linksql.core.exec.ParamsInfo;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+package com.jz.linksql.core.classloader;
 
 /**
- * Date: 2018/6/26
- * Company: www.dtstack.com
- * @author xuchao
+ * Represents a supplier of results.
+ *
+ * <p>There is no requirement that a new or distinct result be returned each
+ * time the supplier is invoked.
+ *
+ * <p>This is a <a href="package-summary.html">functional interface</a>
+ * whose functional method is {@link #get()}.
+ *
+ * @param <T> the type of results supplied by this supplier
+ *
+ * @since 1.8
  */
+@FunctionalInterface
+public interface ClassLoaderSupplier<T> {
 
-public class Main {
-    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
-
-    public static void main(String[] args) throws Exception {
-        ParamsInfo paramsInfo = ExecuteProcessHelper.parseParams(args);
-        StreamExecutionEnvironment env = ExecuteProcessHelper.getStreamExecution(paramsInfo);
-        env.execute(paramsInfo.getName());
-        LOG.info("program {} execution success", paramsInfo.getName());
-    }
+    /**
+     * Gets a result.
+     *
+     * @return a result
+     */
+    T get(ClassLoader cl) throws Exception;
 }

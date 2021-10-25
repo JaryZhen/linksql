@@ -15,27 +15,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jz.linksql.core;
 
-import com.jz.linksql.core.exec.ExecuteProcessHelper;
-import com.jz.linksql.core.exec.ParamsInfo;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.jz.linksql.core.enums;
 
 /**
- * Date: 2018/6/26
+ * restract stream数据处理模式
+ *
+ * Reason:
+ * Date: 2019/1/2
  * Company: www.dtstack.com
- * @author xuchao
+ * @author maqi
  */
+public enum EUpdateMode {
+    // 不回撤数据，只下发增量数据
+    APPEND(0),
+    // 先删除回撤数据，然后更新
+    UPSERT(1);
 
-public class Main {
-    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+    private int type;
 
-    public static void main(String[] args) throws Exception {
-        ParamsInfo paramsInfo = ExecuteProcessHelper.parseParams(args);
-        StreamExecutionEnvironment env = ExecuteProcessHelper.getStreamExecution(paramsInfo);
-        env.execute(paramsInfo.getName());
-        LOG.info("program {} execution success", paramsInfo.getName());
+    EUpdateMode(int type) {
+        this.type = type;
+    }
+
+    public int getType() {
+        return this.type;
     }
 }

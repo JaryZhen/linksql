@@ -15,27 +15,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jz.linksql.core;
 
-import com.jz.linksql.core.exec.ExecuteProcessHelper;
-import com.jz.linksql.core.exec.ParamsInfo;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
+package com.jz.linksql.core.side.cache;
+
+import com.jz.linksql.core.side.AbstractSideTableInfo;
 
 /**
- * Date: 2018/6/26
+ * Reason:
+ * Date: 2018/9/10
  * Company: www.dtstack.com
+ *
  * @author xuchao
  */
 
-public class Main {
-    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+public abstract class AbstractSideCache {
 
-    public static void main(String[] args) throws Exception {
-        ParamsInfo paramsInfo = ExecuteProcessHelper.parseParams(args);
-        StreamExecutionEnvironment env = ExecuteProcessHelper.getStreamExecution(paramsInfo);
-        env.execute(paramsInfo.getName());
-        LOG.info("program {} execution success", paramsInfo.getName());
+    protected AbstractSideTableInfo sideTableInfo;
+
+    public AbstractSideCache(AbstractSideTableInfo sideTableInfo){
+        this.sideTableInfo = sideTableInfo;
     }
+
+    public abstract void initCache();
+
+    public abstract CacheObj getFromCache(String key);
+
+    public abstract void putCache(String key, CacheObj value);
 }

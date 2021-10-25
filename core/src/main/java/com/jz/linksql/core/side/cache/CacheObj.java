@@ -15,27 +15,48 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jz.linksql.core;
 
-import com.jz.linksql.core.exec.ExecuteProcessHelper;
-import com.jz.linksql.core.exec.ParamsInfo;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
+package com.jz.linksql.core.side.cache;
+
+import com.jz.linksql.core.enums.ECacheContentType;
 
 /**
- * Date: 2018/6/26
+ * Reason:
+ * Date: 2018/9/10
  * Company: www.dtstack.com
  * @author xuchao
  */
 
-public class Main {
-    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+public class CacheObj {
 
-    public static void main(String[] args) throws Exception {
-        ParamsInfo paramsInfo = ExecuteProcessHelper.parseParams(args);
-        StreamExecutionEnvironment env = ExecuteProcessHelper.getStreamExecution(paramsInfo);
-        env.execute(paramsInfo.getName());
-        LOG.info("program {} execution success", paramsInfo.getName());
+    private ECacheContentType type;
+
+    private Object content;
+
+    private CacheObj(ECacheContentType type, Object content){
+        this.type = type;
+        this.content = content;
+    }
+
+    public static CacheObj buildCacheObj(ECacheContentType type, Object content){
+        return new CacheObj(type, content);
+    }
+
+    public ECacheContentType getType() {
+        return type;
+    }
+
+    public void setType(ECacheContentType type) {
+        this.type = type;
+    }
+
+    public Object getContent() {
+        return content;
+    }
+
+    public void setContent(Object content) {
+        this.content = content;
     }
 }

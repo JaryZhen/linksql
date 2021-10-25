@@ -15,27 +15,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jz.linksql.core;
 
-import com.jz.linksql.core.exec.ExecuteProcessHelper;
-import com.jz.linksql.core.exec.ParamsInfo;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.jz.linksql.core.enums;
 
 /**
- * Date: 2018/6/26
+ * Database type
+ *
  * Company: www.dtstack.com
- * @author xuchao
+ * @author jiangbo
  */
+public enum EDatabaseType {
 
-public class Main {
-    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+    /**
+     * mysql
+     */
+    MYSQL,
+    /**
+     * sqlserver
+     */
+    SQLSERVER,
+    /**
+     * oracle
+     */
+    ORACLE,
 
-    public static void main(String[] args) throws Exception {
-        ParamsInfo paramsInfo = ExecuteProcessHelper.parseParams(args);
-        StreamExecutionEnvironment env = ExecuteProcessHelper.getStreamExecution(paramsInfo);
-        env.execute(paramsInfo.getName());
-        LOG.info("program {} execution success", paramsInfo.getName());
-    }
 }
