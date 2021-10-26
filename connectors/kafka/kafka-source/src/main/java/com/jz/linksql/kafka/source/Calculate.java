@@ -22,7 +22,7 @@ import org.apache.kafka.clients.consumer.internals.SubscriptionState;
 import org.apache.kafka.common.TopicPartition;
 
 /**
- * company: www.dtstack.com
+
  * @author: JaryZhen
  * create: 2021/10/24
  */

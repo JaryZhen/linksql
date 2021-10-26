@@ -22,10 +22,13 @@ import com.jz.linksql.core.table.AbstractSourceTableInfo;
 import com.jz.linksql.core.util.DtStringUtil;
 import com.jz.linksql.kafka.source.table.KafkaSourceTableInfo;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
+import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
+import org.apache.flink.table.api.Schema;
 import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.types.Row;
@@ -52,20 +55,27 @@ public class IKafkaSource extends AbstractKafkaSource {
 
         Properties kafkaProperties = getKafkaProperties(kafkaSourceTableInfo);
         TypeInformation<Row> typeInformation = getRowTypeInformation(kafkaSourceTableInfo);
-        FlinkKafkaConsumer<Row> kafkaSrc = (FlinkKafkaConsumer<Row>) new KafkaConsumerFactory().createKafkaTableSource(kafkaSourceTableInfo, typeInformation, kafkaProperties);
+        KafkaSource kafkaSrc =  new KafkaConsumerFactory()
+                .createKafkaTableSource(kafkaSourceTableInfo, typeInformation, kafkaProperties);
 
         String sourceOperatorName = generateOperatorName(sourceTableInfo.getName(), topicName);
-        DataStreamSource kafkaSource = env.addSource(kafkaSrc, sourceOperatorName, typeInformation);
+        //DataStreamSource kafkaSource = env.addSource(kafkaSrc, sourceOperatorName, typeInformation);
+
+        DataStreamSource kafkaSource = env.fromSource(KafkaSource.builder().build(), WatermarkStrategy.noWatermarks(), sourceOperatorName);
 
         if (startTimestamp != null) {
-            kafkaSrc.setStartFromTimestamp(startTimestamp);
+            //kafkaSrc.setStartFromTimestamp(startTimestamp);
         } else {
-            setStartPosition(kafkaSourceTableInfo.getOffsetReset(), topicName, kafkaSrc);
+            //setStartPosition(kafkaSourceTableInfo.getOffsetReset(), topicName, kafkaSrc);
         }
         setParallelism(kafkaSourceTableInfo.getParallelism(), kafkaSource);
 //        setStartPosition(kafkaSourceTableInfo.getOffsetReset(), topicName, kafkaSrc, () -> kafkaSrc.setStartFromTimestamp(kafkaSourceTableInfo.getTimestampOffset()));
         String fields = StringUtils.join(kafkaSourceTableInfo.getFields(), ",");
 
-        return tableEnv.fromDataStream(kafkaSource, fields);
+        //return tableEnv.fromDataStream(kafkaSource, fields);
+        return tableEnv.fromDataStream(kafkaSource, Schema
+                .newBuilder()
+                //.fromFields(kafkaSourceTableInfo.getFields(),typeInformation)
+                .build());
     }
 }

@@ -20,26 +20,27 @@ package com.jz.linksql.core.format;
 
 import com.jz.linksql.core.metric.MetricConstant;
 import org.apache.flink.api.common.functions.RuntimeContext;
-import org.apache.flink.api.common.serialization.AbstractDeserializationSchema;
 import org.apache.flink.api.common.serialization.DeserializationSchema;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
+import org.apache.flink.connector.kafka.source.reader.deserializer.KafkaRecordDeserializationSchema;
 import org.apache.flink.metrics.Counter;
 import org.apache.flink.metrics.Meter;
 import org.apache.flink.metrics.MeterView;
 import org.apache.flink.types.Row;
+import org.apache.flink.util.Collector;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
 /**
- * add metric for source
- * <p>
+ * add metric for source*
  *
- * author: toutian
- *  * create: 2021/10/24
+ * @author: JaryZhen
+ * @create: 2021/10/24
  */
-public class DeserializationMetricWrapper extends AbstractDeserializationSchema<Row> {
+public class DeserializationMetricWrapper implements KafkaRecordDeserializationSchema<Row>{
 
     private static final Logger LOG = LoggerFactory.getLogger(DeserializationMetricWrapper.class);
 
@@ -70,7 +71,6 @@ public class DeserializationMetricWrapper extends AbstractDeserializationSchema<
     protected transient Meter numInBytesRate;
 
     public DeserializationMetricWrapper(TypeInformation<Row> typeInfo, DeserializationSchema<Row> deserializationSchema) {
-        super(typeInfo);
         this.deserializationSchema = deserializationSchema;
     }
 
@@ -88,7 +88,14 @@ public class DeserializationMetricWrapper extends AbstractDeserializationSchema<
     }
 
     @Override
-    public Row deserialize(byte[] message) throws IOException {
+    public void open(DeserializationSchema.InitializationContext context) throws Exception {
+        initMetric();
+        KafkaRecordDeserializationSchema.super.open(context);
+    }
+
+    @Override
+    public void deserialize(ConsumerRecord<byte[], byte[]> record, Collector<Row> out) throws IOException {
+        byte[] message = record.value();
         try {
             if (numInRecord.getCount() % dataPrintFrequency == 0) {
                 LOG.info("receive source data:" + new String(message, "UTF-8"));
@@ -99,7 +106,7 @@ public class DeserializationMetricWrapper extends AbstractDeserializationSchema<
             Row row = deserializationSchema.deserialize(message);
             afterDeserialize();
             numInResolveRecord.inc();
-            return row;
+            out.collect(row);
         } catch (Exception e) {
             //add metric of dirty data
             if (dirtyDataCounter.getCount() % dataPrintFrequency == 0) {
@@ -107,7 +114,6 @@ public class DeserializationMetricWrapper extends AbstractDeserializationSchema<
                 LOG.error("data parse error", e);
             }
             dirtyDataCounter.inc();
-            return null;
         }
     }
 
@@ -127,5 +133,10 @@ public class DeserializationMetricWrapper extends AbstractDeserializationSchema<
 
     public void setRuntimeContext(RuntimeContext runtimeContext) {
         this.runtimeContext = runtimeContext;
+    }
+
+    @Override
+    public TypeInformation<Row> getProducedType() {
+        return TypeInformation.of(Row.class);
     }
 }

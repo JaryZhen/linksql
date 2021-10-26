@@ -37,7 +37,7 @@ import java.util.Properties;
 /**
  * 抽象的kafka producer 的工厂类
  * 包括序统一的序列化工具的构造
- * company: www.dtstack.com
+
  * @author: JaryZhen
  * create: 2021/10/24
  */

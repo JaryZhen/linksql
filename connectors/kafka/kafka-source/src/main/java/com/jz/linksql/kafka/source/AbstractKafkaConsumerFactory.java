@@ -25,6 +25,7 @@ import com.jz.linksql.kafka.source.table.KafkaSourceTableInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.flink.api.common.serialization.DeserializationSchema;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
+import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.formats.avro.AvroRowDeserializationSchema;
 import org.apache.flink.formats.csv.CsvRowDeserializationSchema;
 import org.apache.flink.formats.json.DTJsonRowDeserializationSchema;
@@ -34,16 +35,16 @@ import org.apache.flink.types.Row;
 import java.util.Properties;
 
 /**
- * company: www.dtstack.com
+
  *
  * @author: JaryZhen
  * create: 2021/10/24
  */
 public abstract class AbstractKafkaConsumerFactory {
 
-    protected abstract FlinkKafkaConsumerBase<Row> createKafkaTableSource(KafkaSourceTableInfo kafkaSourceTableInfo,
-                                                                          TypeInformation<Row> typeInformation,
-                                                                          Properties props);
+    protected abstract KafkaSource<Row> createKafkaTableSource(KafkaSourceTableInfo kafkaSourceTableInfo,
+                                                               TypeInformation<Row> typeInformation,
+                                                               Properties props);
 
     protected DeserializationMetricWrapper createDeserializationMetricWrapper(KafkaSourceTableInfo kafkaSourceTableInfo,
                                                                               TypeInformation<Row> typeInformation,

@@ -20,16 +20,21 @@ package com.jz.linksql.kafka.source;
 
 import com.jz.linksql.core.format.DeserializationMetricWrapper;
 import com.jz.linksql.kafka.source.table.KafkaSourceTableInfo;
+import org.apache.flink.api.common.serialization.DeserializationSchema;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.connector.kafka.source.KafkaSource;
-import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumerBase;
+import org.apache.flink.connector.kafka.source.reader.deserializer.KafkaRecordDeserializationSchema;
 import org.apache.flink.types.Row;
-import org.apache.kafka.common.requests.IsolationLevel;
+import org.apache.flink.util.Collector;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.common.TopicPartition;
+import org.apache.kafka.common.serialization.Deserializer;
+import org.apache.kafka.common.serialization.IntegerDeserializer;
+
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Properties;
-import java.util.regex.Pattern;
 
 /**
  * @author: JaryZhen
@@ -38,34 +43,35 @@ import java.util.regex.Pattern;
 public class KafkaConsumerFactory extends AbstractKafkaConsumerFactory {
 
     @Override
-    public FlinkKafkaConsumerBase<Row> createKafkaTableSource(KafkaSourceTableInfo kafkaSourceTableInfo, TypeInformation<Row> typeInformation, Properties props) {
+    public KafkaSource<Row> createKafkaTableSource(KafkaSourceTableInfo kafkaSourceTableInfo, TypeInformation<Row> typeInformation, Properties props) {
         KafkaSource kafkaSrc = null;
         if (kafkaSourceTableInfo.getTopicIsPattern()) {
             DeserializationMetricWrapper deserMetricWrapper = createDeserializationMetricWrapper(kafkaSourceTableInfo,
                     typeInformation,
                     (Calculate & Serializable) (subscriptionState, tp)
-                            -> subscriptionState.requestOffsetReset(tp, IsolationLevel.READ_UNCOMMITTED));
+                            // -> subscriptionState.requestOffsetReset(tp, IsolationLevel.READ_UNCOMMITTED));
+                            -> 0L);
 
-            //kafkaSrc = new KafkaConsumer(Pattern.compile(kafkaSourceTableInfo.getTopic()), deserMetricWrapper, props);
-            kafkaSrc = createKafkaSource();
+            kafkaSrc = createKafkaSource(deserMetricWrapper, kafkaSourceTableInfo);
         } else {
             DeserializationMetricWrapper deserMetricWrapper = createDeserializationMetricWrapper(kafkaSourceTableInfo,
                     typeInformation,
                     (Calculate & Serializable) (subscriptionState, tp)
-                            -> subscriptionState.partitionLag(tp, IsolationLevel.READ_UNCOMMITTED));
-            /// kafkaSrc = new KafkaConsumer(kafkaSourceTableInfo.getTopic(), deserMetricWrapper, props);
+                            //-> subscriptionState.partitionLag(tp, IsolationLevel.READ_UNCOMMITTED));
+                            -> 0L);
+            kafkaSrc = createKafkaSource(deserMetricWrapper, kafkaSourceTableInfo);
         }
         return kafkaSrc;
     }
 
-    private KafkaSource createKafkaSource(DeserializationMetricWrapper deserializationMetricWrapper) {
+    private KafkaSource createKafkaSource(DeserializationMetricWrapper deserializationMetricWrapper, KafkaSourceTableInfo sourceTableInfo) {
         KafkaSource<Row> source = KafkaSource
                 .builder()
-                .setBootstrapServers("")
-                .setGroupId("MyGroup")
-                .setTopics(Arrays.asList("TOPIC1, TOPIC2"))
+                .setBootstrapServers(sourceTableInfo.getBootstrapServers())
+                .setGroupId(sourceTableInfo.getGroupId())
+                .setTopics(Arrays.asList(sourceTableInfo.getTopic()))
                 .setDeserializer(deserializationMetricWrapper)
-                .setStartingOffsets(OffsetsInitializer.earliest())
+                .setStartingOffsets(sourceTableInfo.getOffsetReset())
                 .build();
         return source;
 

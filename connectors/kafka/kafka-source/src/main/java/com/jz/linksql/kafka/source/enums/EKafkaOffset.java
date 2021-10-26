@@ -20,7 +20,7 @@ package com.jz.linksql.kafka.source.enums;
 
 /**
  * Date: 2021/3/20
- * Company: www.dtstack.com
+
  * @author maqi
  */
 public enum EKafkaOffset {

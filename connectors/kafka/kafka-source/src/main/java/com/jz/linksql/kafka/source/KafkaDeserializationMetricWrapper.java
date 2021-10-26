@@ -43,7 +43,6 @@ import static com.jz.linksql.core.metric.MetricConstant.*;
 /**
  * add metric for source
  * <p>
- * company: www.dtstack.com
  * @author: JaryZhen
  * @create: 2021/10/24
  */
