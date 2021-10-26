@@ -35,8 +35,6 @@ import org.apache.flink.types.Row;
 import java.util.Properties;
 
 /**
-
- *
  * @author: JaryZhen
  * create: 2021/10/24
  */

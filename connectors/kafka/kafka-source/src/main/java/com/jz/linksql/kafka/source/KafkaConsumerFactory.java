@@ -20,18 +20,11 @@ package com.jz.linksql.kafka.source;
 
 import com.jz.linksql.core.format.DeserializationMetricWrapper;
 import com.jz.linksql.kafka.source.table.KafkaSourceTableInfo;
-import org.apache.flink.api.common.serialization.DeserializationSchema;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.connector.kafka.source.KafkaSource;
-import org.apache.flink.connector.kafka.source.reader.deserializer.KafkaRecordDeserializationSchema;
+import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
 import org.apache.flink.types.Row;
-import org.apache.flink.util.Collector;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.common.TopicPartition;
-import org.apache.kafka.common.serialization.Deserializer;
-import org.apache.kafka.common.serialization.IntegerDeserializer;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Properties;
@@ -45,6 +38,9 @@ public class KafkaConsumerFactory extends AbstractKafkaConsumerFactory {
     @Override
     public KafkaSource<Row> createKafkaTableSource(KafkaSourceTableInfo kafkaSourceTableInfo, TypeInformation<Row> typeInformation, Properties props) {
         KafkaSource kafkaSrc = null;
+        String offerset = kafkaSourceTableInfo.getOffsetReset();
+        OffsetsInitializer offinin = OffsetsInitializer.earliest();
+
         if (kafkaSourceTableInfo.getTopicIsPattern()) {
             DeserializationMetricWrapper deserMetricWrapper = createDeserializationMetricWrapper(kafkaSourceTableInfo,
                     typeInformation,
@@ -52,26 +48,26 @@ public class KafkaConsumerFactory extends AbstractKafkaConsumerFactory {
                             // -> subscriptionState.requestOffsetReset(tp, IsolationLevel.READ_UNCOMMITTED));
                             -> 0L);
 
-            kafkaSrc = createKafkaSource(deserMetricWrapper, kafkaSourceTableInfo);
+            kafkaSrc = createKafkaSource(deserMetricWrapper, kafkaSourceTableInfo, offinin);
         } else {
             DeserializationMetricWrapper deserMetricWrapper = createDeserializationMetricWrapper(kafkaSourceTableInfo,
                     typeInformation,
                     (Calculate & Serializable) (subscriptionState, tp)
                             //-> subscriptionState.partitionLag(tp, IsolationLevel.READ_UNCOMMITTED));
                             -> 0L);
-            kafkaSrc = createKafkaSource(deserMetricWrapper, kafkaSourceTableInfo);
+            kafkaSrc = createKafkaSource(deserMetricWrapper, kafkaSourceTableInfo, offinin);
         }
         return kafkaSrc;
     }
 
-    private KafkaSource createKafkaSource(DeserializationMetricWrapper deserializationMetricWrapper, KafkaSourceTableInfo sourceTableInfo) {
+    private KafkaSource createKafkaSource(DeserializationMetricWrapper deserializationMetricWrapper, KafkaSourceTableInfo sourceTableInfo, OffsetsInitializer offsetsInitializer) {
         KafkaSource<Row> source = KafkaSource
-                .builder()
+                .<Row>builder()
                 .setBootstrapServers(sourceTableInfo.getBootstrapServers())
                 .setGroupId(sourceTableInfo.getGroupId())
                 .setTopics(Arrays.asList(sourceTableInfo.getTopic()))
                 .setDeserializer(deserializationMetricWrapper)
-                .setStartingOffsets(sourceTableInfo.getOffsetReset())
+                .setStartingOffsets(offsetsInitializer)
                 .build();
         return source;
 
