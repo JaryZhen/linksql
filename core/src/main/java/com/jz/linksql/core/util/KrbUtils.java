@@ -30,8 +30,8 @@ import java.io.IOException;
 
 /**
  * @program: flinkStreamSQL
- * @author: wuren
- * @create: 2020/09/14
+ * @author: JaryZhen
+ * @create: 2021/10/14
  **/
 public class KrbUtils {
 

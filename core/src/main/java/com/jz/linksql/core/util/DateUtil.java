@@ -46,8 +46,8 @@ import static java.time.format.DateTimeFormatter.ISO_INSTANT;
 /**
  *
  * 日期工具
- * Date: 2017年03月10日 下午1:16:37
- * Company: www.dtstack.com
+ * Date: 2021年03月10日 下午1:16:37
+ *
  * @author sishu.yss
  *
  */

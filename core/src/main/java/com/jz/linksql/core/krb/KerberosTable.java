@@ -22,8 +22,8 @@ import com.google.common.base.Strings;
 
 /**
  * @program: flinkStreamSQL
- * @author: wuren
- * @create: 2020/09/15
+ * @author: JaryZhen
+ * @create: 2021/10/24
  **/
 public interface KerberosTable {
 

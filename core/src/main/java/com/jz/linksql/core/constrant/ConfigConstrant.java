@@ -22,8 +22,8 @@ package com.jz.linksql.core.constrant;
 
 
 /**
- * @Date: 2018年09月14日 下午14:23:37
- * @Company: www.dtstack.com
+ * @Date: 2021年09月14日 下午14:23:37
+ * @
  * @author sishu.yss
  *
  */

@@ -31,8 +31,8 @@ import java.util.Map;
 
 /**
  * Join信息
- * Date: 2018/7/24
- * Company: www.dtstack.com
+ * Date: 2021/7/24
+ *
  * @author xuchao
  */
 

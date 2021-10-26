@@ -20,7 +20,7 @@
 package com.jz.linksql.core.enums;
 
 /**
- * Created by sishu.yss on 2018/10/10.
+ * Created by sishu.yss on 2021/10/10.
  */
 public enum ClusterMode {
 

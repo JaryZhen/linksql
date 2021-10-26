@@ -32,8 +32,8 @@ import java.util.regex.Pattern;
 
 /**
  * @program: flink.sql
- * @author: wuren
- * @create: 2020/07/09
+ * @author: JaryZhen
+ * @create: 2021/10/09
  **/
 public class DataTypeUtils {
 

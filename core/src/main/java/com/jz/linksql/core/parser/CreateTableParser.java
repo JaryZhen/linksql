@@ -30,8 +30,8 @@ import java.util.regex.Pattern;
 
 /**
  * parser create table sql
- * Date: 2018/6/26
- * Company: www.dtstack.com
+ * Date: 2021/6/26
+ *
  * @author xuchao
  */
 

@@ -21,7 +21,7 @@ package com.jz.linksql.core.enums;
 /**
  * Database type
  *
- * Company: www.dtstack.com
+ *
  * @author jiangbo
  */
 public enum EDatabaseType {

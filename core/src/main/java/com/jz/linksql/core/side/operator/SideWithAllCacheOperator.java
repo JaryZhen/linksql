@@ -32,8 +32,8 @@ import java.util.List;
 
 /**
  * get plugin which implement from RichFlatMapFunction
- * Date: 2018/9/18
- * Company: www.dtstack.com
+ * Date: 2021/9/18
+ *
  *
  * @author xuchao
  */

@@ -20,8 +20,8 @@ package com.jz.linksql.core.enums;
 
 /**
  *  Flink状态后端类型
- * Date: 2019/11/15
- * Company: www.dtstack.com
+ * Date: 2021/11/15
+ *
  * @author maqi
  */
 public enum EStateBackend {

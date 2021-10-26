@@ -25,8 +25,8 @@ import java.util.Properties;
 
 /**
  * 解析传递的参数信息
- * Date: 2020/2/24
- * Company: www.dtstack.com
+ * Date: 2021/10/24
+ *
  * @author maqi
  */
 public class ParamsInfo {

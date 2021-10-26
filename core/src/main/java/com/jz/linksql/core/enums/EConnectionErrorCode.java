@@ -24,8 +24,8 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import java.util.Arrays;
 
 /**
- * Date: 2020/4/2
- * Company: www.dtstack.com
+ * Date: 2021/4/2
+ *
  * @author maqi
  */
 public enum EConnectionErrorCode {

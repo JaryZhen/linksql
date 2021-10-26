@@ -40,8 +40,8 @@ import static org.apache.calcite.sql.SqlKind.*;
 /**
  *
  *  将同级谓词信息填充到维表
- * Date: 2019/12/11
- * Company: www.dtstack.com
+ * Date: 2021/10/11
+ *
  * @author maqi
  */
 public class SidePredicatesParser {

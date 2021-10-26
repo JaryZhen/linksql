@@ -38,7 +38,7 @@ import org.apache.flink.util.FileUtils;
 /**
  * The Parser of Launcher commandline options
  *
- * Company: www.dtstack.com
+ *  
  * @author sishu.yss
  */
 public class OptionParser {

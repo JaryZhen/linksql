@@ -46,8 +46,8 @@ import java.lang.reflect.Method;
 
 /**
  * @description:  mapping by name when insert into sink table
- * @author: maqi
- * @create: 2019/08/15 11:09
+ * @author: JaryZhen
+ * @create:
  */
 public class FlinkSQLExec {
     private static final Logger LOG = LoggerFactory.getLogger(FlinkSQLExec.class);

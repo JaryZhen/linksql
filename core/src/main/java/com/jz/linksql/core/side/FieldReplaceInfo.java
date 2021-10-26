@@ -26,8 +26,8 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * 用于记录转换之后的表和原来表直接字段的关联关系
- * Date: 2018/8/30
- * Company: www.dtstack.com
+ * Date: 2021/8/30
+ *
  * @author xuchao
  */
 

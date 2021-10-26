@@ -35,9 +35,9 @@ import java.io.IOException;
 /**
  * add metric for source
  * <p>
- * company: www.dtstack.com
+ *
  * author: toutian
- * create: 2019/12/24
+ *  * create: 2021/10/24
  */
 public class DeserializationMetricWrapper extends AbstractDeserializationSchema<Row> {
 

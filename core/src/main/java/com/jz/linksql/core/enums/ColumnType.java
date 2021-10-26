@@ -42,7 +42,7 @@ package com.jz.linksql.core.enums;
  * Define standard column type for all the readers or writers that do not
  * have special types of their own
  *
- * Company: www.dtstack.com
+ *
  * @author huyifan.zju@163.com
  */
 public enum ColumnType {

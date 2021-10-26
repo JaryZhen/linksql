@@ -37,8 +37,8 @@ import java.util.regex.Pattern;
 
 /**
  * Create table statement parsing table structure to obtain specific information
- * Date: 2018/6/25
- * Company: www.dtstack.com
+ * Date: 2021/6/25
+ *
  * @author xuchao
  */
 

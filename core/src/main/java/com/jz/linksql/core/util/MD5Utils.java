@@ -27,8 +27,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Date: 2018/8/23
- * Company: www.dtstack.com
+ * Date: 2021/8/23
+ *
  * @author xuchao
  */
 public class MD5Utils {

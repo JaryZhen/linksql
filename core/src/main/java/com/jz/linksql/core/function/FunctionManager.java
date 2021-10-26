@@ -35,8 +35,8 @@ import org.slf4j.LoggerFactory;
 /**
  *  自定义函数管理类
  * Reason:
- * Date: 2017/2/21
- * Company: www.dtstack.com
+ * Date: 2021/10/21
+ *
  * @author xuchao
  */
 

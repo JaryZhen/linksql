@@ -29,8 +29,8 @@ import org.apache.flink.table.sinks.TableSink;
 
 /**
  * Loads jar and initializes the object according to the specified sink type
- * Date: 2017/3/10
- * Company: www.dtstack.com
+ * Date: 2021/3/10
+ *
  * @author xuchao
  */
 

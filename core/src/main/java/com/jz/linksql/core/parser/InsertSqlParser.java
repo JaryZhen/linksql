@@ -41,8 +41,8 @@ import static org.apache.calcite.sql.SqlKind.IDENTIFIER;
 /**
  * 解析flink sql
  * sql 只支持 insert 开头的
- * Date: 2018/6/22
- * Company: www.dtstack.com
+ * Date: 2021/6/22
+ *
  * @author xuchao
  */
 

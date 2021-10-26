@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Properties;
 
 /**
- * @Author: Jary
+ * @Author: JaryZhen
  * @Date: 2021/10/20 8:01 下午
  */
 public class JobParamsInfo {

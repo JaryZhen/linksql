@@ -28,8 +28,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Custom watermark --- for eventtime
- * Date: 2017/12/28
- * Company: www.dtstack.com
+ * Date: 2021/10/24
+ *
  * @author xuchao
  */
 

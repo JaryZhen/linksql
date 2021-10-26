@@ -22,8 +22,8 @@ package com.jz.linksql.core.parser;
 
 /**
  * Reason:
- * Date: 2018/6/26
- * Company: www.dtstack.com
+ * Date: 2021/6/26
+ *
  * @author xuchao
  */
 

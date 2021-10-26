@@ -26,8 +26,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 /**
  *  local模式获取sql任务的执行计划
- * Date: 2020/2/17
- * Company: www.dtstack.com
+ * Date: 2021/10/17
  * @author maqi
  */
 public class GetPlan {

@@ -54,8 +54,8 @@ import java.util.regex.Pattern;
 /**
  *
  *  流执行环境相关配置
- * Date: 2019/11/22
- * Company: www.dtstack.com
+ * Date: 2021/11/22
+ *
  * @author maqi
  */
 public final class StreamEnvConfigManager {

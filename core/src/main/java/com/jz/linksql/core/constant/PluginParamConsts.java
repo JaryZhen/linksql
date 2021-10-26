@@ -20,8 +20,8 @@ package com.jz.linksql.core.constant;
 
 /**
  * @program: flinkStreamSQL
- * @author: wuren
- * @create: 2020/09/15
+ * @author: JaryZhen
+ * @create: 2021/10/15
  **/
 public class PluginParamConsts {
     public static final String PRINCIPAL = "principal";

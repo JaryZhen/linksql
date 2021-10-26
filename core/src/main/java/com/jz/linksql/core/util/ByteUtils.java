@@ -25,8 +25,8 @@ import org.apache.commons.io.Charsets;
 import java.nio.ByteBuffer;
 
 /**
- * Date: 2018/8/28
- * Company: www.dtstack.com
+ * Date: 2021/8/28
+ *
  * @author xuchao
  */
 

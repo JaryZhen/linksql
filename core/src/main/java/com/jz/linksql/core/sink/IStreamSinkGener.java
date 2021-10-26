@@ -24,8 +24,8 @@ import com.jz.linksql.core.table.AbstractTargetTableInfo;
 
 /**
  * Reason:
- * Date: 2017/7/31
- * Company: www.dtstack.com
+ * Date: 2021/7/31
+ *
  * @author xuchao
  */
 public interface IStreamSinkGener<T> {

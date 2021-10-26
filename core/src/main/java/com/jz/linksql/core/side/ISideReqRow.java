@@ -22,8 +22,8 @@ import org.apache.flink.types.Row;
 
 /**
  *
- * Date: 2018/12/4
- * Company: www.dtstack.com
+ * Date: 2021/10/4
+ *
  * @author xuchao
  */
 public interface ISideReqRow {

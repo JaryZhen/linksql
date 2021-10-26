@@ -47,8 +47,8 @@ import java.util.regex.Pattern;
 /**
  * source data parse to json format
  * <p>
- * Date: 2019/12/12
- * Company: www.dtstack.com
+ * Date: 2021/10/12
+ *
  *
  * @author maqi
  */
@@ -176,7 +176,7 @@ public class DtNestRowDeserializationSchema extends AbstractDeserializationSchem
     }
 
     /**
-     * 将 2020-09-07 14:49:10.0 和 1598446699685 两种格式都转化为 Timestamp
+     * 将 2021-09-07 14:49:10.0 和 1598446699685 两种格式都转化为 Timestamp
      */
     private Timestamp convertToTimestamp(String timestamp) {
         if (TIMESTAMP_PATTERN.matcher(timestamp).find()) {

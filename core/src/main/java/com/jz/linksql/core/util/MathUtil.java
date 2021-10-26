@@ -26,8 +26,8 @@ import java.sql.Timestamp;
 
 /**
  * Convert val to specified numeric type
- * Date: 2017/4/21
- * Company: www.dtstack.com
+ * Date: 2021/4/21
+ *  
  * @author xuchao
  */
 

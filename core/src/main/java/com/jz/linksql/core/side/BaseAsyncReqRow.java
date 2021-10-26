@@ -56,8 +56,8 @@ import java.util.concurrent.ScheduledFuture;
 /**
  * All interfaces inherit naming rules: type + "AsyncReqRow" such as == "MysqlAsyncReqRow
  * only support Left join / inner join(join),not support right join
- * Date: 2018/7/9
- * Company: www.dtstack.com
+ * Date: 2021/7/9
+ *
  *
  * @author xuchao
  */

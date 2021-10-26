@@ -24,8 +24,8 @@ import com.jz.linksql.core.side.AbstractSideTableInfo;
 
 /**
  * Reason:
- * Date: 2018/9/10
- * Company: www.dtstack.com
+ * Date: 2021/9/10
+ *
  *
  * @author xuchao
  */

@@ -20,9 +20,9 @@ package com.jz.linksql.core.format;
 
 /**
  * indicate source table input data format type
- * company: www.dtstack.com
- * author: toutian
- * create: 2019/12/24
+ *
+ * @author: JaryZhen
+ * @create: 2021/10/24
  */
 public enum FormatType {
     //Indicates that the data is in nest json format(default)

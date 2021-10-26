@@ -22,8 +22,8 @@ package com.jz.linksql.core.enums;
  * restract stream数据处理模式
  *
  * Reason:
- * Date: 2019/1/2
- * Company: www.dtstack.com
+ * Date: 2021/1/2
+ *
  * @author maqi
  */
 public enum EUpdateMode {

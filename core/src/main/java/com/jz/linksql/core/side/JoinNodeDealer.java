@@ -54,8 +54,8 @@ import static org.apache.calcite.sql.SqlKind.*;
 /**
  * 处理join 节点
  * 1:如果包含维表节点替换为临时查询
- * Date: 2020/2/27
- * Company: www.dtstack.com
+ * Date: 2021/10/27
+ *
  * @author xuchao
  */
 

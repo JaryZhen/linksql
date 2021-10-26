@@ -43,8 +43,8 @@ import java.util.Properties;
 
 /**
  * Reason:
- * Date: 2018/6/27
- * Company: www.dtstack.com
+ * Date: 2021/6/27
+ *
  * @author xuchao
  */
 

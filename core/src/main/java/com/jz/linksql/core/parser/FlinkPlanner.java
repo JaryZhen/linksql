@@ -40,8 +40,8 @@ import static org.apache.calcite.jdbc.CalciteSchemaBuilder.asRootSchema;
 
 /**
  * 废弃。之后删除
- * Date: 2020/3/31
- * Company: www.dtstack.com
+ * Date: 2021/3/31
+ *
  *
  * @author maqi
  */

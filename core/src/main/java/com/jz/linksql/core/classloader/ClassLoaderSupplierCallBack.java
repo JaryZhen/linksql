@@ -20,9 +20,9 @@
 package com.jz.linksql.core.classloader;
 
 /**
- * company: www.dtstack.com
+ *
  * author: toutian
- * create: 2019/10/14
+ * create: 2021/10/2414
  */
 public class ClassLoaderSupplierCallBack {
 

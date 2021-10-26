@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  *  API调用结果返回
- * Date: 2020/2/24
- * Company: www.dtstack.com
+ * Date: 2021/10/24
+ *
  * @author maqi
  */
 public class ApiResult {

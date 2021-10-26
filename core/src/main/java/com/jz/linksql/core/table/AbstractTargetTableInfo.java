@@ -24,8 +24,8 @@ import com.jz.linksql.core.format.FormatType;
 
 /**
  * Reason:
- * Date: 2018/6/25
- * Company: www.dtstack.com
+ * Date: 2021/6/25
+ *
  * @author xuchao
  */
 

@@ -51,8 +51,8 @@ import static org.apache.calcite.sql.SqlKind.LITERAL;
 
 /**
  * Parsing sql, obtain execution information dimension table
- * Date: 2018/7/24
- * Company: www.dtstack.com
+ * Date: 2021/7/24
+ *
  * @author xuchao
  */
 

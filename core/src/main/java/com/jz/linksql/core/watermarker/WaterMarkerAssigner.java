@@ -29,8 +29,8 @@ import org.apache.flink.util.Preconditions;
 import java.sql.Timestamp;
 /**
  * define watermarker
- * Date: 2018/6/29
- * Company: www.dtstack.com
+ * Date: 2021/6/29
+ *
  * @author xuchao
  */
 

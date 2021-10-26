@@ -54,8 +54,8 @@ import static org.apache.calcite.sql.SqlKind.*;
 
 /**
  * 表的解析相关
- * Date: 2020/2/17
- * Company: www.dtstack.com
+ * Date: 2021/10/17
+ *
  *
  * @author xuchao
  */

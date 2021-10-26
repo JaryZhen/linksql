@@ -24,8 +24,8 @@ import org.apache.flink.api.java.typeutils.ResultTypeQueryable;
 import org.apache.flink.types.Row;
 
 /**
- * Date: 2020/3/25
- * Company: www.dtstack.com
+ * Date: 2021/3/25
+ *
  * @author maqi
  */
 public class TupleKeySelector implements ResultTypeQueryable<Row>, KeySelector<Row, Row> {

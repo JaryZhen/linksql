@@ -40,7 +40,7 @@ import java.util.List;
 /**
  * Local Stream Environment
  *
- * Company: www.dtstack.com
+ *
  * @author huyifan.zju@163.com
  */
 public class MyLocalStreamEnvironment extends StreamExecutionEnvironment {

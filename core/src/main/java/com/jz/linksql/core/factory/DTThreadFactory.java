@@ -24,9 +24,9 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * company: www.dtstack.com
+ *
  * author: sishu.yss
- * create: 2018/09/12
+ * create: 2021/10/12
  */
 public class DTThreadFactory implements ThreadFactory {
     private final static AtomicInteger POOL_NUMBER = new AtomicInteger(1);

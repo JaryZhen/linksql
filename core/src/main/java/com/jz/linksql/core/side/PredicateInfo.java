@@ -23,8 +23,8 @@ import java.io.Serializable;
 /**
  *   Predicate base info
  *
- * Date: 2019/12/11
- * Company: www.dtstack.com
+ * Date: 2021/10/11
+ *
  * @author maqi
  */
 public class PredicateInfo implements Serializable {

@@ -25,7 +25,7 @@ import com.jz.linksql.core.enums.EPluginLoadMode;
 /**
  * This class define commandline options for the Launcher program
  *
- * Company: www.dtstack.com
+ *  
  * @author huyifan.zju@163.com
  */
 public class Options {

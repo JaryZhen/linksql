@@ -22,8 +22,8 @@ package com.jz.linksql.core.enums;
 
 /**
  * Reason:
- * Date: 2018/8/2
- * Company: www.dtstack.com
+ * Date: 2021/8/2
+ *
  * @author xuchao
  */
 public enum ECacheType {

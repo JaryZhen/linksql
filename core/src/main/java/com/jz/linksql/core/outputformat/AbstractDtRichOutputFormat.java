@@ -25,7 +25,7 @@ import org.apache.flink.metrics.MeterView;
 
 /**
  * extend RichOutputFormat with metric 'dtNumRecordsOut', 'dtNumDirtyRecordsOut', 'dtNumRecordsOutRate'
- * Created by sishu.yss on 2018/11/28.
+ * Created by sishu.yss on 2021/11/28.
  */
 public abstract class AbstractDtRichOutputFormat<T> extends RichOutputFormat<T>{
 

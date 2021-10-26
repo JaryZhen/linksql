@@ -31,9 +31,9 @@ import org.apache.flink.types.Row;
 /**
  * add metric for source
  * <p>
- * company: www.dtstack.com
+ *
  * author: toutian
- * create: 2019/12/24
+ * @create: 2021/10/24
  */
 public class SerializationMetricWrapper implements SerializationSchema<Tuple2<Boolean,Row>> {
 

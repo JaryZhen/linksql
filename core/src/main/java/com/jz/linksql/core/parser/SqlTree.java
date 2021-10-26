@@ -30,8 +30,8 @@ import java.util.Map;
 
 /**
  * parser sql to get the Sql Tree structure
- * Date: 2018/6/25
- * Company: www.dtstack.com
+ * Date: 2021/6/25
+ *
  * @author xuchao
  */
 

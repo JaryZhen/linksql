@@ -24,8 +24,8 @@ import java.util.regex.Matcher;
 
 /**
  * Reason:
- * Date: 2018/7/4
- * Company: www.dtstack.com
+ * Date: 2021/7/4
+ *
  * @author xuchao
  */
 public interface ITableFieldDealHandler {

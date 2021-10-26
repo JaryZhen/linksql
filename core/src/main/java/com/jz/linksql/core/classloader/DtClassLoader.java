@@ -35,8 +35,8 @@ import java.util.LinkedHashSet;
 /**
  *
  * Custom class loader ---> priority access from the current loader class
- * Date: 2017/6/18
- * Company: www.dtstack.com
+ * Date: 2021/6/18
+ *
  * @author xuchao
  */
 

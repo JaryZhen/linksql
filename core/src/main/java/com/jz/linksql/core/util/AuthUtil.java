@@ -26,8 +26,8 @@ import java.util.Map;
 
 /**
  *  Utility methods for helping with security tasks.
- * Date: 2019/12/28
- * Company: www.dtstack.com
+ * Date: 2021/10/24
+ *
  * @author maqi
  */
 public class AuthUtil {
