@@ -13,7 +13,7 @@ create table dim__vk_dwa_pty_user_test_info_da_in (
     if_dm varchar
 ) with (
     type = 'kafka',
-    bootstrapServers = '10.23.2.223:9092,10.23.4.130:9092,10.23.2.224:9092',
+    bootstrapServers = 'localhost:9092',
     offsetReset = 'custom_timestamp',
     topic = 'vk_dwa_pty_user_test_info_da',
     groupId = 'vk_dwa_pty_user_test_info_da_group_test_alert',

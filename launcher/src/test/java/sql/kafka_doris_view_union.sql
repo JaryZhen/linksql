@@ -59,7 +59,7 @@ create table student_online_class_sink(
     parallelism = '1',
     timezone = 'Asia/Shanghai',
     print = 'true',
-    host = '172.24.101.57' -- doris ip地址
+    host = ' ' -- doris ip地址
 );
 create view sink2 as
 select

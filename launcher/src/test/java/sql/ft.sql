@@ -23,7 +23,7 @@ create table app_inline_room_anticipation_ft_in (
     type = 'kafka',
     topic = 'app_inline_room_anticipation_ft',
     groupId = 'app_inline_room_anticipation_ft_vklink',
-    bootstrapServers = '10.23.27.126:9092,10.23.33.124:9092,10.23.27.127:9092,10.23.33.125:9092,10.23.27.128:9092',
+    bootstrapServers = 'localhost:9092',
     offsetReset = 'custom_timestamp',
     parallelism = '1',
     timezone = 'Asia/Shanghai'

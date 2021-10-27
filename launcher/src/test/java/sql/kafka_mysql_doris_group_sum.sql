@@ -11,7 +11,7 @@ create table student_online_class_in(
     type = 'kafka',
     topic = 'app_inline_room_anticipation_ft_sql_test',
     groupId = 'doris_student_online_class_vklink',
-    bootstrapServers = '10.32.8.10:9092,10.32.8.5:9092',
+    bootstrapServers = 'localhost:9092',
     --offsetReset = 'custom_timestamp',
     parallelism = '1',
     timezone = 'Asia/Shanghai'
@@ -29,7 +29,7 @@ create table sideTable(
     PERIOD FOR SYSTEM_TIME
 ) WITH(
     type = 'mysql',
-    url = 'jdbc:mysql://172.24.101.57:9000/arch?charset=utf8',
+    url = 'jdbc:mysql://localhost:9000/arch?charset=utf8',
     userName = 'tester_arch_rw',
     password = '8987979UJIJM.-=0',
     tableName = 'student_online_class_dm',
@@ -54,7 +54,7 @@ create table student_online_class_sink(classroom varchar, tm integer) with (
     rollcount = '1',
     rollinterval = '1',
     alertphone = '18211058793',
-    host = '172.24.101.57' -- doris ip地址
+    host = ' ' -- doris ip地址
 );
 insert into
     student_online_class_sink

@@ -78,7 +78,7 @@ create table student_online_class_sink(
     rollinterval = '1000000',
     ---alertphone = '18211058793',
     print = 'true',
-    host = '172.24.101.57' -- doris ip地址
+    host = '' -- doris ip地址
 );
 insert into
     student_online_class_sink
