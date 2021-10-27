@@ -48,7 +48,7 @@ import static org.apache.flink.table.types.utils.TypeConversions.fromLegacyInfoT
  * Date: 2021/3/30
 
  *
- * @author maqi
+ * @author  Jaryzhen
  */
 public abstract class AbstractKafkaSink implements RetractStreamTableSink<Row>, IStreamSinkGener {
     public static final String SINK_OPERATOR_NAME_TPL = "${topic}_${table}";

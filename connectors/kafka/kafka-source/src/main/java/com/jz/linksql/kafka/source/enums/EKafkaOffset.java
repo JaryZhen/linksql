@@ -21,7 +21,7 @@ package com.jz.linksql.kafka.source.enums;
 /**
  * Date: 2021/3/20
 
- * @author maqi
+ * @author  Jaryzhen
  */
 public enum EKafkaOffset {
 

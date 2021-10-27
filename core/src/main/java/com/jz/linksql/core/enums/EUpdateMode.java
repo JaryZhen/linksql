@@ -24,7 +24,7 @@ package com.jz.linksql.core.enums;
  * Reason:
  * Date: 2021/1/2
  *
- * @author maqi
+ * @author  Jaryzhen
  */
 public enum EUpdateMode {
     // 不回撤数据，只下发增量数据

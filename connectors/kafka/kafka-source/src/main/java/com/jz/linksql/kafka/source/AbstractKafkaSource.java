@@ -42,7 +42,7 @@ import java.util.stream.IntStream;
 /**
  * Date: 2021/3/20
 
- * @author maqi
+ * @author  Jaryzhen
  */
 public abstract class AbstractKafkaSource implements IStreamSourceGener<Table> {
 

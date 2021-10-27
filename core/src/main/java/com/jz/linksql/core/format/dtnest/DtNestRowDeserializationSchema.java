@@ -50,7 +50,7 @@ import java.util.regex.Pattern;
  * Date: 2021/10/12
  *
  *
- * @author maqi
+ * @author  Jaryzhen
  */
 public class DtNestRowDeserializationSchema extends AbstractDeserializationSchema<Row> {
 

@@ -26,7 +26,7 @@ import java.util.Arrays;
 /**
  * Date: 2021/4/2
  *
- * @author maqi
+ * @author  Jaryzhen
  */
 public enum EConnectionErrorCode {
     ERROR_NOT_MATCH(0, "错误信息未匹配", new String[]{}),

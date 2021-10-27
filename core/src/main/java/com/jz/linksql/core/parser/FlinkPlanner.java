@@ -43,7 +43,7 @@ import static org.apache.calcite.jdbc.CalciteSchemaBuilder.asRootSchema;
  * Date: 2021/3/31
  *
  *
- * @author maqi
+ * @author  Jaryzhen
  */
 public class FlinkPlanner {
 

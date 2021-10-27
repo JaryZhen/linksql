@@ -25,7 +25,7 @@ import java.io.Serializable;
  *
  * Date: 2021/10/11
  *
- * @author maqi
+ * @author  Jaryzhen
  */
 public class PredicateInfo implements Serializable {
 

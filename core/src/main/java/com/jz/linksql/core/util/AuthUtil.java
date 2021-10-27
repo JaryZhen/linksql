@@ -28,7 +28,7 @@ import java.util.Map;
  *  Utility methods for helping with security tasks.
  * Date: 2021/10/24
  *
- * @author maqi
+ * @author  Jaryzhen
  */
 public class AuthUtil {
 

@@ -22,7 +22,7 @@ package com.jz.linksql.core.enums;
  *  Flink状态后端类型
  * Date: 2021/11/15
  *
- * @author maqi
+ * @author  Jaryzhen
  */
 public enum EStateBackend {
     /**

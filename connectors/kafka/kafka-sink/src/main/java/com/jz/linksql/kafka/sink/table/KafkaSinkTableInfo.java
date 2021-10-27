@@ -34,7 +34,7 @@ import java.util.Set;
 
  *
  * @author DocLi
- * @modifyer maqi
+ * @modifyer  Jaryzhen
  */
 public class KafkaSinkTableInfo extends AbstractTargetTableInfo {
 

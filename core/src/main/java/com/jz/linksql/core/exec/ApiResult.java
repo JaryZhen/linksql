@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
  *  API调用结果返回
  * Date: 2021/10/24
  *
- * @author maqi
+ * @author  Jaryzhen
  */
 public class ApiResult {
 

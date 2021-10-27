@@ -58,7 +58,7 @@ import java.util.stream.Collectors;
  * <p>Serializes objects that are represented in (nested) Flink rows. It support types that
  * are compatible with Flink's Table & SQL API.
  **
- * @author  maqi
+ * @author   Jaryzhen
  */
 public class AvroTuple2SerializationSchema implements SerializationSchema<Tuple2<Boolean,Row>> {
 

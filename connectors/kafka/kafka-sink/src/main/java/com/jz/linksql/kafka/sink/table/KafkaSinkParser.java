@@ -32,7 +32,7 @@ import java.util.Map;
 
  *
  * @author DocLi
- * @modifyer maqi
+ * @modifyer  Jaryzhen
  */
 public class KafkaSinkParser extends AbstractTableParser {
     @Override

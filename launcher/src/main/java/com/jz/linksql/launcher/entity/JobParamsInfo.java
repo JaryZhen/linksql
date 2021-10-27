@@ -1,11 +1,32 @@
-package com.jz.linksql.launcher.parser;
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.jz.linksql.launcher.entity;
 
 import java.util.Arrays;
 import java.util.Properties;
 
 /**
- * @Author: JaryZhen
- * @Date: 2021/10/20 8:01 下午
+ * parse the original mission parameters
+ * Date: 2021/3/4
+ *
+ *
+ * @author  Jaryzhen
  */
 public class JobParamsInfo {
 
@@ -22,23 +43,10 @@ public class JobParamsInfo {
     private final Properties confProperties;
     private final Properties yarnSessionConfProperties;
     private final String addShipFile;
-    private final Properties dirtyProperties;
 
-    private JobParamsInfo(
-            String mode
-            , String name
-            , String queue
-            , String localPluginRoot
-            , String flinkConfDir
-            , String yarnConfDir
-            , String pluginLoadMode
-            , String[] execArgs
-            , Properties confProperties
-            , Properties yarnSessionConfProperties
-            , String udfJar
-            , String flinkJarPath
-            , String addShipFile
-            , Properties dirtyProperties) {
+    private JobParamsInfo(String mode, String name, String queue, String localPluginRoot, String flinkConfDir, String yarnConfDir,
+                          String pluginLoadMode, String[] execArgs, Properties confProperties, Properties yarnSessionConfProperties,
+                          String udfJar, String flinkJarPath, String addShipFile) {
         this.mode = mode;
         this.name = name;
         this.queue = queue;
@@ -52,11 +60,6 @@ public class JobParamsInfo {
         this.udfJar = udfJar;
         this.flinkJarPath = flinkJarPath;
         this.addShipFile = addShipFile;
-        this.dirtyProperties = dirtyProperties;
-    }
-
-    public static JobParamsInfo.Builder builder() {
-        return new JobParamsInfo.Builder();
     }
 
     public String getMode() {
@@ -111,9 +114,10 @@ public class JobParamsInfo {
         return addShipFile;
     }
 
-    public Properties getDirtyProperties() {
-        return dirtyProperties;
+    public static Builder builder() {
+        return new Builder();
     }
+
 
     public static class Builder {
         private String mode;
@@ -129,94 +133,76 @@ public class JobParamsInfo {
         private Properties confProperties;
         private Properties yarnSessionConfProperties;
         private String addShipfile;
-        private Properties dirtyProperties;
 
-        public JobParamsInfo.Builder setMode(String mode) {
+        public Builder setMode(String mode) {
             this.mode = mode;
             return this;
         }
 
-        public JobParamsInfo.Builder setName(String name) {
+        public Builder setName(String name) {
             this.name = name;
             return this;
         }
 
-        public JobParamsInfo.Builder setQueue(String queue) {
+        public Builder setQueue(String queue) {
             this.queue = queue;
             return this;
         }
 
-        public JobParamsInfo.Builder setLocalPluginRoot(String localPluginRoot) {
+        public Builder setLocalPluginRoot(String localPluginRoot) {
             this.localPluginRoot = localPluginRoot;
             return this;
         }
 
-        public JobParamsInfo.Builder setFlinkConfDir(String flinkConfDir) {
+        public Builder setFlinkConfDir(String flinkConfDir) {
             this.flinkConfDir = flinkConfDir;
             return this;
         }
 
-        public JobParamsInfo.Builder setYarnConfDir(String yarnConfDir) {
+        public Builder setYarnConfDir(String yarnConfDir) {
             this.yarnConfDir = yarnConfDir;
             return this;
         }
 
-        public JobParamsInfo.Builder setPluginLoadMode(String pluginLoadMode) {
+        public Builder setPluginLoadMode(String pluginLoadMode) {
             this.pluginLoadMode = pluginLoadMode;
             return this;
         }
 
-        public JobParamsInfo.Builder setExecArgs(String[] execArgs) {
+        public Builder setExecArgs(String[] execArgs) {
             this.execArgs = execArgs;
             return this;
         }
 
-        public JobParamsInfo.Builder setConfProperties(Properties confProperties) {
+        public Builder setConfProperties(Properties confProperties) {
             this.confProperties = confProperties;
             return this;
         }
 
-        public JobParamsInfo.Builder setYarnSessionConfProperties(Properties yarnSessionConfProperties) {
+        public Builder setYarnSessionConfProperties(Properties yarnSessionConfProperties) {
             this.yarnSessionConfProperties = yarnSessionConfProperties;
             return this;
         }
 
-        public JobParamsInfo.Builder setUdfJar(String udfJar) {
+        public Builder setUdfJar(String udfJar) {
             this.udfJar = udfJar;
             return this;
         }
 
-        public JobParamsInfo.Builder setFlinkJarPath(String flinkJarPath) {
+        public Builder setFlinkJarPath(String flinkJarPath) {
             this.flinkJarPath = flinkJarPath;
             return this;
         }
 
-        public JobParamsInfo.Builder setAddShipfile(String addShipfile) {
+        public Builder setAddShipfile(String addShipfile) {
             this.addShipfile = addShipfile;
             return this;
         }
 
-        public JobParamsInfo.Builder setDirtyProperties(Properties dirtyProperties) {
-            this.dirtyProperties = dirtyProperties;
-            return this;
-        }
-
         public JobParamsInfo build() {
-            return new JobParamsInfo(
-                    mode
-                    , name
-                    , queue
-                    , localPluginRoot
-                    , flinkConfDir
-                    , yarnConfDir
-                    , pluginLoadMode
-                    , execArgs
-                    , confProperties
-                    , yarnSessionConfProperties
-                    , udfJar
-                    , flinkJarPath
-                    , addShipfile
-                    , dirtyProperties);
+            return new JobParamsInfo(mode, name, queue, localPluginRoot, flinkConfDir,
+                    yarnConfDir, pluginLoadMode, execArgs, confProperties,
+                    yarnSessionConfProperties, udfJar, flinkJarPath, addShipfile);
         }
     }
 
@@ -236,8 +222,6 @@ public class JobParamsInfo {
                 ", confProperties=" + confProperties +
                 ", yarnSessionConfProperties=" + yarnSessionConfProperties +
                 ", addShipFile='" + addShipFile + '\'' +
-                ", dirtyProperties=" + dirtyProperties +
                 '}';
     }
-
 }

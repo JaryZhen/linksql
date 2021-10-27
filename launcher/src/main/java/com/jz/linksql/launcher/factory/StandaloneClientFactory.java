@@ -16,35 +16,25 @@
  * limitations under the License.
  */
 
-package com.jz.linksql.core.side;
+package com.jz.linksql.launcher.factory;
 
-import org.apache.flink.api.common.typeinfo.TypeInformation;
-import org.apache.flink.api.java.functions.KeySelector;
-import org.apache.flink.api.java.typeutils.ResultTypeQueryable;
-import org.apache.flink.types.Row;
+import org.apache.flink.client.deployment.ClusterDescriptor;
+import org.apache.flink.client.deployment.StandaloneClusterDescriptor;
+import org.apache.flink.configuration.Configuration;
+
+import static org.apache.flink.util.Preconditions.checkNotNull;
 
 /**
- * Date: 2021/3/25
+ * Date: 2021/3/6
  *
  * @author  Jaryzhen
  */
-public class TupleKeySelector implements ResultTypeQueryable<Row>, KeySelector<Row, Row> {
-
-    private int[] keyFields;
-    private TypeInformation<Row> returnType;
-
-    public TupleKeySelector(int[] keyFields, TypeInformation<Row> returnType) {
-        this.keyFields = keyFields;
-        this.returnType = returnType;
-    }
+public enum StandaloneClientFactory implements AbstractClusterClientFactory {
+    INSTANCE;
 
     @Override
-    public Row getKey(Row value) throws Exception {
-        return Row.project(value, keyFields);
-    }
-
-    @Override
-    public TypeInformation<Row> getProducedType() {
-        return returnType;
+    public ClusterDescriptor createClusterDescriptor(String clusterConfPath, Configuration flinkConfig) {
+        checkNotNull(flinkConfig);
+        return new StandaloneClusterDescriptor(flinkConfig);
     }
 }

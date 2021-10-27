@@ -27,7 +27,7 @@ import java.util.Properties;
  * 解析传递的参数信息
  * Date: 2021/10/24
  *
- * @author maqi
+ * @author  Jaryzhen
  */
 public class ParamsInfo {
 

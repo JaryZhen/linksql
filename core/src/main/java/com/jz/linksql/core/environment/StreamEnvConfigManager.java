@@ -56,7 +56,7 @@ import java.util.regex.Pattern;
  *  流执行环境相关配置
  * Date: 2021/11/22
  *
- * @author maqi
+ * @author  Jaryzhen
  */
 public final class StreamEnvConfigManager {
     private StreamEnvConfigManager() {
