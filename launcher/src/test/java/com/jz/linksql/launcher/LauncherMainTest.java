@@ -25,14 +25,14 @@ public class LauncherMainTest extends TestCase {
 -confProp {"timezone":"Asia/Shanghai","sql.checkpoint.interval":"60000"}
          *
          */
-        String rootFile = "/Users/jary/IdeaProjects/viplkid-FlinkStreamSql/";
+        String rootFile = "/Users/jary/IdeaProjects/solink/";
         String confProp= "{\"sql.checkpoint.cleanup.mode\":\"false\"," +
                 "\"sql.checkpoint.interval\":10000," +
                 "\"time.characteristic\":\"EventTime\"," + //ProcessingTime EventTime
                 "\"auto.offset.reset\": \"earliest\"}";
-        String sqlFilePath="launcher/src/main/test/sql/";
+        String sqlFilePath="launcher/src/test/java/nsql/";
 
-        String sqlFile= sqlFilePath+"kafka_doris_view_union.sql";
+        String sqlFile= sqlFilePath+"kafka_print.sql";
 
         String[] sql = new String[]{
                 "-mode", "local",//local yarnPer getPlane

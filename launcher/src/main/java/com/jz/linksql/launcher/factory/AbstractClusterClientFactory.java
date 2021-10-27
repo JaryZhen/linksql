@@ -38,9 +38,10 @@ public interface AbstractClusterClientFactory {
     default ClusterSpecification getClusterSpecification(Configuration configuration) {
         checkNotNull(configuration);
 
-        final int jobManagerMemoryMb = ConfigurationUtils
-                .getJobManagerHeapMemory(configuration)
-                .getMebiBytes();
+        final int jobManagerMemoryMb = 1024*1024*10;
+                //ConfigurationUtils
+                //.getJobManagerHeapMemory(configuration)
+                //.getMebiBytes();
 
         final int taskManagerMemoryMb = TaskExecutorProcessUtils
                 .processSpecFromConfig(TaskExecutorProcessUtils.getConfigurationMapLegacyTaskManagerHeapSizeToConfigOption(

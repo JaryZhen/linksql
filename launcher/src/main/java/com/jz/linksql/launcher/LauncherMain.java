@@ -16,7 +16,6 @@
  * limitations under the License.
  */
 
-
 package com.jz.linksql.launcher;
 
 import com.alibaba.fastjson.JSON;

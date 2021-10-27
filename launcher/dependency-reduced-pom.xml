@@ -107,10 +107,6 @@
           <artifactId>byte-buddy-agent</artifactId>
           <groupId>net.bytebuddy</groupId>
         </exclusion>
-        <exclusion>
-          <artifactId>objenesis</artifactId>
-          <groupId>org.objenesis</groupId>
-        </exclusion>
       </exclusions>
     </dependency>
     <dependency>

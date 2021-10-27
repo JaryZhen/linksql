@@ -351,6 +351,7 @@ public class ExecuteProcessHelper {
         }
     }
 
+    //TODO: add yarn standalone
     public static StreamExecutionEnvironment getStreamExeEnv(Properties confProperties, String deployMode) throws Exception {
         StreamExecutionEnvironment env = !ClusterMode.local.name().equals(deployMode) ?
                 StreamExecutionEnvironment.getExecutionEnvironment() :

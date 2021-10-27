@@ -111,6 +111,6 @@ public enum YarnClusterClientFactory implements AbstractClusterClientFactory {
     }
 
     private boolean isXmlFile(java.nio.file.Path file) {
-        return XML_FILE_EXTENSION.equals(org.apache.flink.shaded.guava18.com.google.common.io.Files.getFileExtension(file.toString()));
+        return XML_FILE_EXTENSION.equals(org.apache.flink.shaded.guava30.com.google.common.io.Files.getFileExtension(file.toString()));
     }
 }

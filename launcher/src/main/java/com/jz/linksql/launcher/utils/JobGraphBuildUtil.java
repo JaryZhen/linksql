@@ -18,9 +18,9 @@
 
 package com.jz.linksql.launcher.utils;
 
-import com.dtstack.flink.sql.constrant.ConfigConstrant;
-import com.dtstack.flink.sql.util.MathUtil;
-import com.dtstack.flink.sql.util.PluginUtil;
+import com.jz.linksql.core.constrant.ConfigConstrant;
+import com.jz.linksql.core.util.MathUtil;
+import com.jz.linksql.core.util.PluginUtil;
 import com.jz.linksql.launcher.entity.JobParamsInfo;
 import org.apache.commons.io.Charsets;
 import org.apache.commons.lang.BooleanUtils;
