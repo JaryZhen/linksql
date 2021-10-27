@@ -17,7 +17,6 @@
  */
 
 
-
 package com.jz.linksql.core.util;
 
 import com.jz.linksql.core.classloader.DtClassLoader;
@@ -74,7 +73,7 @@ public class PluginUtil {
         return getLocalSideJarFilePath(type, operator, suffix, localSqlPluginPath, pluginLoadMode);
     }
 
-    public static String getJarFileDirPath(String type, String sqlRootDir, String pluginLoadMode){
+    public static String getJarFileDirPath(String type, String sqlRootDir, String pluginLoadMode) {
         String jarPath = sqlRootDir + SP + type;
 
         checkJarFileDirPath(sqlRootDir, jarPath, pluginLoadMode);
@@ -92,7 +91,7 @@ public class PluginUtil {
 
     private static void checkJarFileDirPath(String sqlRootDir, String path, String pluginLoadMode) {
 
-        if (sqlRootDir == null || sqlRootDir.isEmpty()){
+        if (sqlRootDir == null || sqlRootDir.isEmpty()) {
             if (pluginLoadMode.equalsIgnoreCase(EPluginLoadMode.LOCALTEST.name())) {
                 LOG.warn("be sure you are not in LocalTest mode, if not, check the sqlRootDir");
                 return;
@@ -103,37 +102,37 @@ public class PluginUtil {
 
         File jarFile = new File(path);
 
-        if(!jarFile.exists()){
+        if (!jarFile.exists()) {
             throw new RuntimeException(String.format("path %s not exists!!!", path));
         }
     }
 
     public static String getGenerClassName(String pluginTypeName, String type) throws IOException {
         String pluginClassName = upperCaseFirstChar(pluginTypeName) + upperCaseFirstChar(type);
-        return CLASS_PRE_STR  + "." + type.toLowerCase() + "." + pluginTypeName + "." + pluginClassName;
+        return CLASS_PRE_STR + "." + type.toLowerCase() + "." + pluginTypeName + "." + pluginClassName;
     }
 
-    public static String getSqlParserClassName(String pluginTypeName, String type){
+    public static String getSqlParserClassName(String pluginTypeName, String type) {
 
-        String pluginClassName = upperCaseFirstChar(pluginTypeName) + upperCaseFirstChar(type) +  "Parser";
-        return CLASS_PRE_STR  + "." + type.toLowerCase() + "." +  pluginTypeName + ".table." + pluginClassName;
+        String pluginClassName = upperCaseFirstChar(pluginTypeName) + upperCaseFirstChar(type) + "Parser";
+        return CLASS_PRE_STR + "." + pluginTypeName + "." + type.toLowerCase() + ".table." + pluginClassName;
     }
 
 
-    public static String getSqlSideClassName(String pluginTypeName, String type, String operatorType){
+    public static String getSqlSideClassName(String pluginTypeName, String type, String operatorType) {
         String pluginClassName = upperCaseFirstChar(pluginTypeName) + operatorType + "ReqRow";
-        return CLASS_PRE_STR  + "." + type.toLowerCase() + "." +  pluginTypeName + "." + pluginClassName;
+        return CLASS_PRE_STR + "." + type.toLowerCase() + "." + pluginTypeName + "." + pluginClassName;
     }
 
-    public static Map<String,Object> objectToMap(Object obj) throws Exception{
+    public static Map<String, Object> objectToMap(Object obj) throws Exception {
         return objectMapper.readValue(objectMapper.writeValueAsBytes(obj), Map.class);
     }
 
-    public static <T> T jsonStrToObject(String jsonStr, Class<T> clazz) throws JsonParseException, JsonMappingException, JsonGenerationException, IOException{
-        return  objectMapper.readValue(jsonStr, clazz);
+    public static <T> T jsonStrToObject(String jsonStr, Class<T> clazz) throws JsonParseException, JsonMappingException, JsonGenerationException, IOException {
+        return objectMapper.readValue(jsonStr, clazz);
     }
 
-    public static Properties stringToProperties(String str) throws IOException{
+    public static Properties stringToProperties(String str) throws IOException {
         Properties properties = new Properties();
         properties.load(new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8)));
         return properties;
@@ -160,7 +159,7 @@ public class PluginUtil {
         return buildFinalSideJarFilePath(pluginType, sideOperator, tableType, remoteSqlRootDir, localSqlPluginPath, pluginLoadMode);
     }
 
-    public static URL getLocalSideJarFilePath(String pluginType, String sideOperator,  String tableType, String localSqlPluginPath, String pluginLoadMode) throws Exception {
+    public static URL getLocalSideJarFilePath(String pluginType, String sideOperator, String tableType, String localSqlPluginPath, String pluginLoadMode) throws Exception {
         return buildFinalSideJarFilePath(pluginType, sideOperator, tableType, null, localSqlPluginPath, pluginLoadMode);
     }
 
@@ -173,7 +172,7 @@ public class PluginUtil {
         return new URL("file:" + sqlRootDir + SP + dirName + SP + jarName);
     }
 
-    public static String upperCaseFirstChar(String str){
+    public static String upperCaseFirstChar(String str) {
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
@@ -186,16 +185,16 @@ public class PluginUtil {
             return urlList.toArray(new URL[0]);
         }
 
-        if(!dirFile.exists() || !dirFile.isDirectory()){
+        if (!dirFile.exists() || !dirFile.isDirectory()) {
             throw new RuntimeException("plugin path:" + pluginDir + "is not exist.");
         }
 
         File[] files = dirFile.listFiles(tmpFile -> tmpFile.isFile() && tmpFile.getName().endsWith(JAR_SUFFIX));
-        if(files == null || files.length == 0){
+        if (files == null || files.length == 0) {
             throw new RuntimeException("plugin path:" + pluginDir + " is null.");
         }
 
-        for(File file : files){
+        for (File file : files) {
             URL pluginJarUrl = file.toURI().toURL();
             urlList.add(pluginJarUrl);
         }
@@ -206,16 +205,16 @@ public class PluginUtil {
     public static String getCoreJarFileName(String path, String prefix, String pluginLoadMode) throws Exception {
         String coreJarFileName = null;
         File pluginDir = new File(path);
-        if (pluginDir.exists() && pluginDir.isDirectory()){
+        if (pluginDir.exists() && pluginDir.isDirectory()) {
             File[] jarFiles = pluginDir.listFiles((dir, name) ->
                     name.toLowerCase().startsWith(prefix) && name.toLowerCase().endsWith(".jar"));
 
-            if (jarFiles != null && jarFiles.length > 0){
+            if (jarFiles != null && jarFiles.length > 0) {
                 coreJarFileName = jarFiles[0].getName();
             }
         }
 
-        if (StringUtils.isEmpty(coreJarFileName) && !pluginLoadMode.equalsIgnoreCase(EPluginLoadMode.LOCALTEST.name())){
+        if (StringUtils.isEmpty(coreJarFileName) && !pluginLoadMode.equalsIgnoreCase(EPluginLoadMode.LOCALTEST.name())) {
             throw new Exception("Can not find core jar file in path:" + path);
         }
 
