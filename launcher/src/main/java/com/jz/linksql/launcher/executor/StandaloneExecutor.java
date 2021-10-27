@@ -38,7 +38,7 @@ import org.apache.flink.util.Preconditions;
 /**
  * Date: 2021/3/6
  *
- * @author  Jaryzhen
+ * @author Jaryzhen
  */
 public class StandaloneExecutor {
     JobParamsInfo jobParamsInfo;
@@ -65,7 +65,7 @@ public class StandaloneExecutor {
         ClusterClientProvider clusterClientProvider = clusterDescriptor.retrieve(StandaloneClusterId.getInstance());
         ClusterClient clusterClient = clusterClientProvider.getClusterClient();
 
-        JobExecutionResult jobExecutionResult = ClientUtils.submitJob(clusterClient, jobGraph);
+  /*      JobExecutionResult jobExecutionResult = ClientUtils.submitJob(clusterClient, jobGraph);
 
         PackagedProgram prg =
                 PackagedProgram.newBuilder()
@@ -80,7 +80,7 @@ public class StandaloneExecutor {
                 false);
         String jobId = jobExecutionResult.getJobID().toString();
         System.out.println("jobID:" + jobId);
-
+*/
     }
 
 

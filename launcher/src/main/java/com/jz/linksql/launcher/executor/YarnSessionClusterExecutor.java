@@ -68,11 +68,9 @@ public class YarnSessionClusterExecutor {
             JobGraphBuildUtil.fillUserJarForJobGraph(jobParamsInfo.getUdfJar(), jobGraph);
         }
 
-        JobExecutionResult jobExecutionResult = ClientUtils.submitJob(clusterClient, jobGraph);
+      /*  JobExecutionResult jobExecutionResult = ClientUtils.submitJob(clusterClient, jobGraph);
         String jobId = jobExecutionResult.getJobID().toString();
         System.out.println("jobID:" + jobId);
-
+*/
     }
-
-
 }
