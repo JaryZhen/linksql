@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
  * parser register udf sql
  * Date: 2021/6/26
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class CreateFuncParser implements IParser {

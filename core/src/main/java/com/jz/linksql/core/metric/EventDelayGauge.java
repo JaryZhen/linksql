@@ -24,7 +24,7 @@ import org.apache.flink.metrics.Gauge;
  * event data delay time ,unit seconds
  * Date: 2021/10/18
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class EventDelayGauge implements Gauge<Integer> {

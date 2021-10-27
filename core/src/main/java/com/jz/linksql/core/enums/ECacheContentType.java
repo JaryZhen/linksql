@@ -25,7 +25,7 @@ package com.jz.linksql.core.enums;
  * Date: 2021/9/10
  *
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public enum ECacheContentType {

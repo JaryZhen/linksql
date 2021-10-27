@@ -28,7 +28,7 @@ import java.sql.Timestamp;
  * Convert val to specified numeric type
  * Date: 2021/4/21
  *  
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class MathUtil {

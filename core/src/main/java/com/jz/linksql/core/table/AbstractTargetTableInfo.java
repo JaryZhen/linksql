@@ -26,7 +26,7 @@ import com.jz.linksql.core.format.FormatType;
  * Reason:
  * Date: 2021/6/25
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public abstract class AbstractTargetTableInfo extends AbstractTableInfo {

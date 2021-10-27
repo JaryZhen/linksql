@@ -29,7 +29,7 @@ import java.util.Map;
  * Reason:
  * Date: 2021/6/22
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public abstract class AbstractTableInfo implements Serializable {

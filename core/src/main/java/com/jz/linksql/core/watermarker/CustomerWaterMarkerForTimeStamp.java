@@ -31,7 +31,7 @@ import java.sql.Timestamp;
  * Custom watermark --- for eventtime
  * Date: 2021/10/25
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class CustomerWaterMarkerForTimeStamp extends AbstractCustomerWaterMarker<Row> {

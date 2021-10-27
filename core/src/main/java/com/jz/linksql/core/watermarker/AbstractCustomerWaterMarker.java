@@ -33,7 +33,7 @@ import org.apache.flink.streaming.api.windowing.time.Time;
  * Reason:
  * Date: 2021/10/18
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public abstract class AbstractCustomerWaterMarker<T> extends BoundedOutOfOrdernessTimestampExtractor<T> implements RichFunction {

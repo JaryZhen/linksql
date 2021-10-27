@@ -37,7 +37,7 @@ import java.util.regex.Pattern;
  * Reason:
  * Date: 2021/6/22
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class DtStringUtil {

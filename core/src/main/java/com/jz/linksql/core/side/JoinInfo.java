@@ -33,7 +33,7 @@ import java.util.Map;
  * Join信息
  * Date: 2021/7/24
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class JoinInfo implements Serializable {

@@ -24,7 +24,7 @@ package com.jz.linksql.core.parser;
  * Reason:
  * Date: 2021/6/26
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public interface IParser {

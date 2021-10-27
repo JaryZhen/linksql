@@ -29,7 +29,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Date: 2021/8/23
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 public class MD5Utils {
 

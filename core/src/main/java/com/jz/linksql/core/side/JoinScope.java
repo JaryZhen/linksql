@@ -34,7 +34,7 @@ import java.util.Map;
  * Date: 2021/7/20
  *
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class JoinScope {

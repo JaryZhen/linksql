@@ -29,7 +29,7 @@ import java.util.Map;
  * Reason:
  * Date: 2021/6/25
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public abstract class AbstractSourceTableInfo extends AbstractTableInfo {

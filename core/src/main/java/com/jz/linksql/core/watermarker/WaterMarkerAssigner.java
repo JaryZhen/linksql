@@ -31,7 +31,7 @@ import java.sql.Timestamp;
  * define watermarker
  * Date: 2021/6/29
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class WaterMarkerAssigner {

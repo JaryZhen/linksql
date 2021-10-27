@@ -40,7 +40,7 @@ import java.util.Map;
  * Reason:
  * Date: 2021/9/18
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public abstract class BaseSideInfo implements Serializable{

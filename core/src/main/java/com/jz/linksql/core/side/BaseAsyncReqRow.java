@@ -59,7 +59,7 @@ import java.util.concurrent.ScheduledFuture;
  * Date: 2021/7/9
  *
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public abstract class BaseAsyncReqRow extends RichAsyncFunction<Row, RowData> implements ISideReqRow {

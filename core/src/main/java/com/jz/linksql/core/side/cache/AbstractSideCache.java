@@ -27,7 +27,7 @@ import com.jz.linksql.core.side.AbstractSideTableInfo;
  * Date: 2021/9/10
  *
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public abstract class AbstractSideCache {

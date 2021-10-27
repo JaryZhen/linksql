@@ -26,7 +26,7 @@ import com.jz.linksql.core.table.AbstractTargetTableInfo;
  * Reason:
  * Date: 2021/7/31
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 public interface IStreamSinkGener<T> {
 

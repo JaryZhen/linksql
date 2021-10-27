@@ -45,7 +45,7 @@ import java.util.Properties;
  * Reason:
  * Date: 2021/6/27
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class PluginUtil {

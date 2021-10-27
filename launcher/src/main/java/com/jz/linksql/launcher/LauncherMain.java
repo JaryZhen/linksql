@@ -46,13 +46,10 @@ import java.util.Properties;
 
 /**
  * Date: 2017/2/20
- *  
- * @author xuchao
+ *
+ * @author Jaryzhen
  */
-
 public class LauncherMain {
-
-
 
     public static JobParamsInfo parseArgs(String[] args) throws Exception {
         if (args.length == 1 && args[0].endsWith(".json")) {

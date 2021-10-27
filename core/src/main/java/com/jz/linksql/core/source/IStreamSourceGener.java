@@ -28,7 +28,7 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
  * Reason:
  * Date: 2021/8/2
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 public interface IStreamSourceGener<T> {
 

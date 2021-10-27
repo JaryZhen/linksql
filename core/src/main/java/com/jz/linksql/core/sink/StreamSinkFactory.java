@@ -31,7 +31,7 @@ import org.apache.flink.table.sinks.TableSink;
  * Loads jar and initializes the object according to the specified sink type
  * Date: 2021/3/10
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class StreamSinkFactory {

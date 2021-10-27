@@ -30,7 +30,7 @@ import com.jz.linksql.core.util.PluginUtil;
  * Date: 2021/7/25
  *
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class StreamSideFactory {

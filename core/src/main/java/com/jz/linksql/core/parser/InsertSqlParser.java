@@ -43,7 +43,7 @@ import static org.apache.calcite.sql.SqlKind.IDENTIFIER;
  * sql 只支持 insert 开头的
  * Date: 2021/6/22
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class InsertSqlParser implements IParser {

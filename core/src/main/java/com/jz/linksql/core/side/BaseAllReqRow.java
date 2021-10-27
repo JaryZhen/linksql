@@ -45,7 +45,7 @@ import java.util.concurrent.TimeUnit;
  * Reason:
  * Date: 2021/9/18
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public abstract class BaseAllReqRow extends RichFlatMapFunction<Row, RowData> implements ISideReqRow {

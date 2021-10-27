@@ -24,7 +24,7 @@ package com.jz.linksql.core.enums;
  * Reason:
  * Date: 2021/7/5
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 public enum ETableType {
     //源表

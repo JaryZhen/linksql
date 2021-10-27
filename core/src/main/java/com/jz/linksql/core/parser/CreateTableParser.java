@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
  * parser create table sql
  * Date: 2021/6/26
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class CreateTableParser implements IParser {

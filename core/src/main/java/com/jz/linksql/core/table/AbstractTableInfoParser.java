@@ -39,7 +39,7 @@ import java.util.regex.Pattern;
  * Create table statement parsing table structure to obtain specific information
  * Date: 2021/6/25
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class AbstractTableInfoParser {

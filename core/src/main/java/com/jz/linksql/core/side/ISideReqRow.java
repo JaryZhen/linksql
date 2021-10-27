@@ -24,7 +24,7 @@ import org.apache.flink.types.Row;
  *
  * Date: 2021/10/4
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 public interface ISideReqRow {
 

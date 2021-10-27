@@ -56,7 +56,7 @@ import static org.apache.calcite.sql.SqlKind.*;
  * 1:如果包含维表节点替换为临时查询
  * Date: 2021/10/27
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class JoinNodeDealer {

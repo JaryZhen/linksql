@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
  * Reason:
  * Date: 2021/8/2
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public abstract class AbstractSideTableParser extends AbstractTableParser {

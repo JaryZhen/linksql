@@ -53,7 +53,7 @@ import static org.apache.calcite.sql.SqlKind.LITERAL;
  * Parsing sql, obtain execution information dimension table
  * Date: 2021/7/24
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class SideSQLParser {

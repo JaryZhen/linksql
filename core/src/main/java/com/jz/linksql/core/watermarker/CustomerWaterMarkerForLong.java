@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
  * Custom watermark --- for eventtime
  * Date: 2021/10/24
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class CustomerWaterMarkerForLong extends AbstractCustomerWaterMarker<Row> {

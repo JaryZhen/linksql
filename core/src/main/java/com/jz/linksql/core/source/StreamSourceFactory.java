@@ -34,7 +34,7 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
  * streamTableSource
  * Date: 2021/3/10
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class StreamSourceFactory {

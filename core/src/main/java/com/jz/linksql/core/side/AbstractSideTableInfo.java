@@ -39,7 +39,7 @@ import java.util.Optional;
  * Date: 2021/7/25
  *
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public abstract class AbstractSideTableInfo extends AbstractTableInfo implements Serializable {

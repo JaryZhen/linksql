@@ -37,7 +37,7 @@ import java.util.concurrent.TimeUnit;
  * get data from  External data source with async operator
  * Date: 2021/9/18
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class SideAsyncOperator {

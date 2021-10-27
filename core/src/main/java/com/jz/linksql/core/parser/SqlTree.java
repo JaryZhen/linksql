@@ -32,7 +32,7 @@ import java.util.Map;
  * parser sql to get the Sql Tree structure
  * Date: 2021/6/25
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class SqlTree {

@@ -30,7 +30,7 @@ import java.util.Objects;
  * Date: 2021/7/23
  *
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class FieldInfo implements Serializable {

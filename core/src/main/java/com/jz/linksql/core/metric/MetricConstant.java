@@ -22,7 +22,7 @@ package com.jz.linksql.core.metric;
  * defined customer metric name
  * Date: 2021/10/18
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class MetricConstant {

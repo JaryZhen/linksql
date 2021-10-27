@@ -24,7 +24,7 @@ package com.jz.linksql.core.side;
  * Reason:
  * Date: 2021/7/24
  *
- * @author xuchao
+ * @author Jaryzhen
  */
 
 public class AliasInfo {
