@@ -81,7 +81,7 @@ public class InsertSqlParser implements IParser {
             case INSERT:
                 SqlNode sqlTarget = ((SqlInsert)sqlNode).getTargetTable();
                 SqlNode sqlSource = ((SqlInsert)sqlNode).getSource();
-                sqlParseResult.addTargetTable(sqlTarget.toString());
+                sqlParseResult.addExecutTargetTable(sqlTarget.toString());
                 parentIsInsert = true;
                 parseNode(sqlSource, sqlParseResult);
                 break;
@@ -154,19 +154,19 @@ public class InsertSqlParser implements IParser {
     /**
      * 将第一层 select 中的 sqlNode 转化为 AsNode，解决字段名冲突问题
      * 仅对 table.xx 这种类型的字段进行替换
-     * @param selectList select Node 的 select 字段
+     * @param selectFeilList select Node 的 select 字段
      * @param sqlSelect 第一层解析出来的 selectNode
      */
-    private static void rebuildSelectNode(SqlNodeList selectList, SqlSelect sqlSelect) {
-        SqlNodeList sqlNodes = new SqlNodeList(selectList.getParserPosition());
+    private static void rebuildSelectNode(SqlNodeList selectFeilList, SqlSelect sqlSelect) {
+        SqlNodeList sqlNodes = new SqlNodeList(selectFeilList.getParserPosition());
 
-        for (int index = 0; index < selectList.size(); index++) {
-            if (selectList.get(index).getKind().equals(SqlKind.AS)
-                    || ((SqlIdentifier) selectList.get(index)).names.size() == 1) {
-                sqlNodes.add(selectList.get(index));
+        for (int index = 0; index < selectFeilList.size(); index++) {
+            if (selectFeilList.get(index).getKind().equals(SqlKind.AS)
+                    || ((SqlIdentifier) selectFeilList.get(index)).names.size() == 1) {
+                sqlNodes.add(selectFeilList.get(index));
                 continue;
             }
-            sqlNodes.add(transformToAsNode(selectList.get(index)));
+            sqlNodes.add(transformToAsNode(selectFeilList.get(index)));
         }
         sqlSelect.setSelectList(sqlNodes);
     }
@@ -201,7 +201,7 @@ public class InsertSqlParser implements IParser {
             sourceTableList.add(sourceTable);
         }
 
-        public void addTargetTable(String targetTable){
+        public void addExecutTargetTable(String targetTable){
             targetTableList.add(targetTable);
         }
 

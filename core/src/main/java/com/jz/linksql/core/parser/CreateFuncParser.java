@@ -52,7 +52,7 @@ public class CreateFuncParser implements IParser {
             result.setType(type);
             result.setName(funcName);
             result.setClassName(className);
-            sqlTree.addFunc(result);
+            sqlTree.addFuncTableInfo(result);
         }
     }
 

@@ -115,8 +115,11 @@ public class SqlParser {
                         throw new RuntimeException("can't find table " + tableName);
                     }
 
-                    AbstractTableInfo tableInfo = tableInfoParser.parseWithTableType(ETableType.SOURCE.getType(),
-                            createTableResult, LOCAL_SQL_PLUGIN_ROOT, pluginLoadMode);
+                    AbstractTableInfo tableInfo = tableInfoParser.parseWithTableType(
+                            ETableType.SOURCE.getType(),
+                            createTableResult,
+                            LOCAL_SQL_PLUGIN_ROOT,
+                            pluginLoadMode);
                     sqlTree.addTableInfo(tableName, tableInfo);
                 }
             }
@@ -128,8 +131,11 @@ public class SqlParser {
                         throw new RuntimeException("can't find table " + tableName);
                     }
 
-                    AbstractTableInfo tableInfo = tableInfoParser.parseWithTableType(ETableType.SINK.getType(),
-                            createTableResult, LOCAL_SQL_PLUGIN_ROOT, pluginLoadMode);
+                    AbstractTableInfo tableInfo = tableInfoParser.parseWithTableType(
+                            ETableType.SINK.getType(),
+                            createTableResult,
+                            LOCAL_SQL_PLUGIN_ROOT,
+                            pluginLoadMode);
                     sqlTree.addTableInfo(tableName, tableInfo);
                 }
             }
@@ -146,8 +152,11 @@ public class SqlParser {
                             throw new RuntimeException("can't find table " + tableName);
                         }
                     } else {
-                        AbstractTableInfo tableInfo = tableInfoParser.parseWithTableType(ETableType.SOURCE.getType(),
-                                createTableResult, LOCAL_SQL_PLUGIN_ROOT, pluginLoadMode);
+                        AbstractTableInfo tableInfo = tableInfoParser.parseWithTableType(
+                                ETableType.SOURCE.getType(),
+                                createTableResult,
+                                LOCAL_SQL_PLUGIN_ROOT,
+                                pluginLoadMode);
                         sqlTree.addTableInfo(tableName, tableInfo);
                     }
                 }

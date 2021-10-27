@@ -44,7 +44,7 @@ import java.util.regex.Pattern;
 
 public class AbstractTableInfoParser {
 
-    private final static String TYPE_KEY = "type";
+    private final static String TYPE_KEY = "'connector'";
 
     private final static String SIDE_TABLE_SIGN = "(?i)^PERIOD\\s+FOR\\s+SYSTEM_TIME$";
 
@@ -68,6 +68,7 @@ public class AbstractTableInfoParser {
         }
 
         if(tableType == ETableType.SOURCE.getType()){
+            //TODO: validation side
             boolean isSideTable = checkIsSideTable(parserResult.getFieldsInfoStr());
 
             if(!isSideTable){

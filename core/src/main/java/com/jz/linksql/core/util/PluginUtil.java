@@ -54,7 +54,7 @@ public class PluginUtil {
 
     private static final String JAR_SUFFIX = ".jar";
 
-    private static final String CLASS_PRE_STR = "com.jz.linksql.core";
+    private static final String CLASS_PRE_STR = "com.jz.linksql";
 
     private static final Logger LOG = LoggerFactory.getLogger(PluginUtil.class);
 

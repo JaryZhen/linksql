@@ -66,7 +66,7 @@ public class CreateTableParser implements IParser {
             result.setFieldsInfoStr(fieldsInfoStr);
             result.setPropMap(props);
 
-            sqlTree.addPreDealTableInfo(tableName, result);
+            sqlTree.addCreateTableInfo(tableName, result);
         }
     }
 
